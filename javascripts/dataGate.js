@@ -1,5 +1,6 @@
 const xhrs = require('./xhr.js');
 const data = require('./data.js');
+const msgEvents = require('./msgEvents.js');
 // const printToDom = require('./dom.js');
 
 function successFunction1 () {
@@ -11,6 +12,7 @@ function successFunction1 () {
 function successFunction2 () {
   const messageData = JSON.parse(this.responseText).messages;
   data.setMessages(messageData);
+  msgEvents.addSubmitEvent();
   // printToDom();
 };
 
