@@ -10,6 +10,20 @@ const emojis = {
   cool: '60F',
   love: '60D',
   kiss: '618',
+  hug: '917',
+  star: '929',
+  think: '914',
+  'raised-eyebrow': '928',
+  neutral: '610',
+  eyeroll: '644',
+  tongue: '61B',
+  cry: '622',
+  scream: '631',
+  angry: '620',
+  nerd: '913',
+  evil: '608',
+  clown: '921',
+  poop: '4A9',
 };
 
 const convertEmojis = (inputString) => {
