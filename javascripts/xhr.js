@@ -6,7 +6,7 @@ const xhr1 = (successFunction, errorFunction) => {
   myRequest.send();
 };
 
-const xhr2 = () => {
+const xhr2 = (successFunction, errorFunction) => {
   const myRequest = new XMLHttpRequest;
   myRequest.addEventListener('load', successFunction);
   myRequest.addEventListener('error', errorFunction);
