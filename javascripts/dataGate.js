@@ -1,4 +1,4 @@
-const xhr = require('./xhr.js');
+const xhrs = require('./xhr');
 const data = require('./data.js');
 const printToDom = require('./dom.js');
 
@@ -18,3 +18,8 @@ function WTF () {
   console.log('SHIIITTT! WHYHYHYHYHY');
 };
 
+const initializer = () => {
+  xhrs.xhr1(successFunction1, WTF);
+};
+
+module.exports = initializer;
