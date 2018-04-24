@@ -8,7 +8,7 @@ const printUsers = usersArray => {
   // domString += `<div class="row">`;
   // domString +=   `<div class="col-xs-6 col-md-2">`;
   // domString +=     `<div class="form-group">`;
-  domString +=       `<select class="selectpicker form-control" title="Choose user...">`;
+  domString +=       `<select class="selectpicker form-control navbar-btn" title="Choose user...">`;
   usersArray.forEach ((user) => {
     domString +=         `<option>${user.userName}</option>`;
   });

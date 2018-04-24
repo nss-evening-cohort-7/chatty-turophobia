@@ -9,3 +9,8 @@ body {
 #messages-output {
   margin-top: 70px;
 }
+
+#width {
+  display: inline;
+  width: 70px;
+}
