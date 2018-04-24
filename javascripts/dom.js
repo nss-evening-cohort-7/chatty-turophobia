@@ -5,17 +5,11 @@ const printToDom = (domString, divId) => {
 const printUsers = usersArray => {
   console.log(usersArray);
   let domString = '';
-  // domString += `<div class="row">`;
-  // domString +=   `<div class="col-xs-6 col-md-2">`;
-  // domString +=     `<div class="form-group">`;
-  domString +=       `<select class="selectpicker form-control navbar-btn" title="Choose user...">`;
+  domString +=       `<select id="selected-user" class="selectpicker form-control navbar-btn" title="Choose user...">`;
   usersArray.forEach ((user) => {
-    domString +=         `<option>${user.userName}</option>`;
+    domString +=         `<option">${user.userName}</option>`;
   });
   domString +=       `</select>`;
-  // domString +=     `</div>`;
-  // domString +=   `</div>`;
-  // domString += `</div>`;
   printToDom(domString, 'users-output');
 };
 const printMessages = (users, messages) => {
