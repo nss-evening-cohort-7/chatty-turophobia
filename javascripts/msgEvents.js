@@ -1,5 +1,9 @@
 const grabInput = document.getElementById('input');
 
+const timeStamp = () => {
+  return new Date().toLocaleString();
+};
+
 const addSubmitEvent = () => {
   grabInput.addEventListener('keypress', submitMessage);
 };
@@ -12,4 +16,5 @@ const submitMessage = (e) => {
 
 module.exports = {
   addSubmitEvent,
+  timeStamp,
 };
