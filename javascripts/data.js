@@ -16,10 +16,14 @@ const setMessages = (messageData) => {
 const getMessages = () => {
   return messagesArray;
 };
+const findMessage = (id) => {
+  return messagesArray.find(msg => msg.id === id);
+};
 
 module.exports = {
   setUsers,
   getUsers,
   setMessages,
   getMessages,
+  findMessage,
 };
