@@ -1,4 +1,5 @@
 const convertEmojis = require('./emoji.js');
+const data = require('./data.js');
 const grabInput = document.getElementById('input');
 const clearMessagesBtn = document.getElementById('clearMessagesBtn');
 const messages = document.getElementsByClassName('clear');
@@ -20,6 +21,8 @@ const submitMessage = (e) => {
   }
 };
 const clearMessages = (e) => {
+  data.setMessages([]);
+  console.log(data.getMessages());
   for (let i = 0; i < messages.length; i++) {
     messages[i].innerHTML = '';
   };
