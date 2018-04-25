@@ -14,9 +14,21 @@ const addSubmitEvent = () => {
 
 const submitMessage = (e) => {
   let message = grabInput.value;
-  if (e.keyCode === 13 && message) {
+  if (e.keyCode === 13 && message && messageToEdit.id) {
+    const messages = data.getMessages();
+    messages.forEach((item) => {
+      if (item.id === messageToEdit.id) {
+        item.message = message;
+      }
+    });
+    console.log('Edited messages array: ', messages);
+    data.setMessages(messages);
+    console.log('New Source of Truth MessageArray: ', data.getMessages());
+    messageToEdit = [];
+    grabInput.value = '';
+  } else if (e.keyCode === 13 && message && messageToEdit.id !== true) {
+    console.log('This is the new Message: ', message);
     message = convertEmojis(message);
-    console.log(message);
   }
 };
 
@@ -30,6 +42,7 @@ const editMessage = (e) => {
   const messageId = e.target.parentNode.previousSibling.children[0].id;
   messageToEdit = data.findMessage(messageId);
   grabInput.value = messageToEdit.message;
+  console.log('Message to Edit: ', messageToEdit);
 };
 
 module.exports = {
