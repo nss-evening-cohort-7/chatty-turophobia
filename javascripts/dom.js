@@ -29,7 +29,6 @@ const printMessages = (users, messages) => {
         domString += `<p>${messages[i].message}</p>`;
     }
     domString += `</div>`;
-
     domString += `<div class="pull-right">`;
     domString += `<button class="btn btn-default" type="submit">Edit</button>`;
     domString += `<button class="btn btn-default delete-btn" type="submit">Delete</button>`;
