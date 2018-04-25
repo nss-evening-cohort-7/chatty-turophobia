@@ -16,6 +16,7 @@ const setMessages = (messageData) => {
 const getMessages = () => {
   return messagesArray;
 };
+
 const addMessage = (message) => {
   messagesArray.push(message);
 };

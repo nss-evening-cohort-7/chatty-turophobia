@@ -26,11 +26,11 @@ const printMessages = (users, messages) => {
     domString += `<div class="pull-left">`;
     for (let j = 0; j < messages.length; j++) {
       if (users[i].id === messages[j].userId)
-        domString += `<p>${messages[i].message}</p>`;
+        domString += `<p id='${messages[j].id}'>${messages[i].message}</p>`;
     }
     domString += `</div>`;
     domString += `<div class="pull-right">`;
-    domString += `<button class="btn btn-default" type="submit">Edit</button>`;
+    domString += `<button class="btn btn-default edit-button" type="submit">Edit</button>`;
     domString += `<button class="btn btn-default delete-btn" type="submit">Delete</button>`;
     domString += `</div>`;
     domString += `</div>`;

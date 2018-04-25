@@ -1,8 +1,11 @@
-const convertEmojis = require('./emoji');
+const convertEmojis = require('./emoji.js');
+const editButton = document.getElementsByClassName('edit-button');
 const data = require('./data');
 const grabInput = document.getElementById('input');
 const clearMessagesBtn = document.getElementById('clearMessagesBtn');
 const messages = document.getElementsByClassName('clear');
+let messageToEdit = [];
+
 const timeStamp = () => {
   return new Date().toLocaleString();
 };
@@ -15,14 +18,30 @@ const addClearMessageEvent = () => {
 
 const submitMessage = (e) => {
   let message = grabInput.value;
-  const userName = document.getElementById('selected-user')
-    .previousElementSibling.querySelector('.selected')
-    .querySelector('.text').innerHTML;
-  const user = data.findUserByName(userName).id;
-  if (e.keyCode === 13 && message && user) {
+  if (e.keyCode === 13 && message && messageToEdit.id) {
+    const messages = data.getMessages();
+    messages.forEach((item) => {
+      if (item.id === messageToEdit.id) {
+        item.message = message;
+      }
+    });
+    console.log('Edited messages array: ', messages);
+    data.setMessages(messages);
+    console.log('New Source of Truth MessageArray: ', data.getMessages());
+    messageToEdit = [];
+    grabInput.value = '';
+  } else if (e.keyCode === 13 && message && messageToEdit.id !== true) {
+    console.log('This is the new Message: ', message);
+    const userName = document.getElementById('selected-user')
+      .previousElementSibling.querySelector('.selected')
+      .querySelector('.text').innerHTML;
+    const user = data.findUserByName(userName).id;
+    // if (e.keyCode === 13 && message && user) {
     message = convertEmojis(message);
     const newMsg = new Message (user, message);
     data.addMessage(newMsg);
+    grabInput.value = '';
+
   }
 };
 const Message = (() => {
@@ -57,8 +76,22 @@ const removeMessage = (e) => {
   data.deleteMessage(selectedMessage);
 };
 
+const addEditEvent = () => {
+  for (let i = 0; i < editButton.length; i++) {
+    editButton[i].addEventListener('click', editMessage);
+  };
+};
+
+const editMessage = (e) => {
+  const messageId = e.target.parentNode.previousSibling.children[0].id;
+  messageToEdit = data.findMessage(messageId);
+  grabInput.value = messageToEdit.message;
+  console.log('Message to Edit: ', messageToEdit);
+};
+
 module.exports = {
   addSubmitEvent,
+  addEditEvent,
   timeStamp,
   addDeleteEvent,
   addClearMessageEvent,
