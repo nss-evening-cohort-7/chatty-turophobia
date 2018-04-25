@@ -19,7 +19,6 @@ const printMessages = (users, messages) => {
   let domString = '';
   for (let i = 0; i < users.length; i++) {
     domString += `<div class='well well-sm clearfix'>`;
-    // domString += `<div class="pull-left">`;
     domString += `<h5>${users[i].userName}</h5>`;
     domString += `<div class="pull-left">`;
     for (let j = 0; j < messages.length; j++) {
@@ -27,7 +26,6 @@ const printMessages = (users, messages) => {
         domString += `<p>${messages[i].message}</p>`;
     }
     domString += `</div>`;
-
     domString += `<div class="pull-right">`;
     domString += `<button class="btn btn-default" type="submit">Edit</button>`;
     domString += `<button class="btn btn-default" type="submit">Delete</button>`;
