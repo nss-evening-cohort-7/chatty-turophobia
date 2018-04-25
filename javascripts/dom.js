@@ -1,3 +1,5 @@
+const addDeleteEvent = require('./msgEvents.js').addDeleteEvent;
+
 const printToDom = (domString, divId) => {
   document.getElementById(divId).innerHTML = domString;
 };
@@ -18,7 +20,7 @@ const printUsers = usersArray => {
 const printMessages = (users, messages) => {
   let domString = '';
   for (let i = 0; i < users.length; i++) {
-    domString += `<div class='well well-sm clearfix'>`;
+    domString += `<div id='${messages[i].id}' class='well well-sm clearfix'>`;
     // domString += `<div class="pull-left">`;
     domString += `<h5>${users[i].userName}</h5>`;
     domString += `<div class="pull-left">`;
@@ -30,11 +32,12 @@ const printMessages = (users, messages) => {
 
     domString += `<div class="pull-right">`;
     domString += `<button class="btn btn-default" type="submit">Edit</button>`;
-    domString += `<button class="btn btn-default" type="submit">Delete</button>`;
+    domString += `<button class="btn btn-default delete-btn" type="submit">Delete</button>`;
     domString += `</div>`;
     domString += `</div>`;
   }
   printToDom(domString, 'messages-output');
+  addDeleteEvent();
 
 };
 
