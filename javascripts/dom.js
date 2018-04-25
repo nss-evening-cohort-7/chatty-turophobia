@@ -10,7 +10,10 @@ const printUsers = usersArray => {
     domString +=         `<option>${user.userName}</option>`;
   });
   domString +=       `</select>`;
-  printToDom(domString, 'users-output');
+  $(document).ready(function () {
+    $('.selectpicker').selectpicker();
+    printToDom(domString, 'users-output');
+  });
 };
 const printMessages = (users, messages) => {
   let domString = '';
@@ -31,10 +34,7 @@ const printMessages = (users, messages) => {
     domString += `</div>`;
     domString += `</div>`;
   }
-  $(document).ready(function () {
-    printToDom(domString, 'messages-output');
-    $('.selectpicker').selectpicker();
-  });
+  printToDom(domString, 'messages-output');
 };
 
 module.exports = {
