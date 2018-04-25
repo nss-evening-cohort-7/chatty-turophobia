@@ -31,7 +31,10 @@ const printMessages = (users, messages) => {
     domString += `</div>`;
     domString += `</div>`;
   }
-  printToDom(domString, 'messages-output');
+  $(document).ready(function () {
+    printToDom(domString, 'messages-output');
+    $('.selectpicker').selectpicker();
+  });
 };
 
 module.exports = {
