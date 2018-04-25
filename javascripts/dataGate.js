@@ -16,6 +16,7 @@ function successFunction2 () {
   data.setMessages(messageData);
   prints.printMessages(data.getUsers(), messageData);
   msgEvents.addSubmitEvent();
+  msgEvents.addEditEvent();
 };
 
 function WTF () {
