@@ -1,6 +1,7 @@
 const convertEmojis = require('./emoji.js');
 const editButton = document.getElementsByClassName('edit-button');
 const data = require('./data');
+const printMessages = require('./dom.js').printMessages;
 const grabInput = document.getElementById('input');
 const clearMessagesBtn = document.getElementById('clearMessagesBtn');
 const messages = document.getElementsByClassName('clear');
@@ -18,15 +19,15 @@ const addClearMessageEvent = () => {
 
 const submitMessage = (e) => {
   let message = grabInput.value;
+  const messageArray = data.getMessages();
   if (e.keyCode === 13 && message && messageToEdit.id) {
-    const messages = data.getMessages();
-    messages.forEach((item) => {
+    messageArray.forEach((item) => {
       if (item.id === messageToEdit.id) {
         item.message = message;
       }
     });
-    console.log('Edited messages array: ', messages);
-    data.setMessages(messages);
+    console.log('Edited messages array: ', messageArray);
+    data.setMessages(messageArray);
     console.log('New Source of Truth MessageArray: ', data.getMessages());
     messageToEdit = [];
     grabInput.value = '';
@@ -41,8 +42,10 @@ const submitMessage = (e) => {
     const newMsg = new Message (user, message);
     data.addMessage(newMsg);
     grabInput.value = '';
-
   }
+  printMessages(messageArray);
+  addEditEvent();
+  addDeleteEvent();
 };
 const Message = (() => {
   let firstId = 6;
@@ -74,6 +77,10 @@ const removeMessage = (e) => {
   const messageId = e.target.parentNode.parentNode.id;
   const selectedMessage = data.findMessage(messageId);
   data.deleteMessage(selectedMessage);
+  const newMessageArray = data.getMessages();
+  printMessages(newMessageArray);
+  addEditEvent();
+  addDeleteEvent();
 };
 
 const addEditEvent = () => {
@@ -83,7 +90,7 @@ const addEditEvent = () => {
 };
 
 const editMessage = (e) => {
-  const messageId = e.target.parentNode.previousSibling.children[0].id;
+  const messageId = e.target.parentNode.parentNode.id;
   messageToEdit = data.findMessage(messageId);
   grabInput.value = messageToEdit.message;
   console.log('Message to Edit: ', messageToEdit);
