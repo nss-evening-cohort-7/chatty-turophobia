@@ -29,6 +29,7 @@ const submitMessage = (e) => {
   } else if (e.keyCode === 13 && message && messageToEdit.id !== true) {
     console.log('This is the new Message: ', message);
     message = convertEmojis(message);
+    grabInput.value = '';
   }
 };
 
