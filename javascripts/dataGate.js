@@ -9,6 +9,7 @@ function successFunction1 () {
   xhrs.xhr2(successFunction2, WTF);
   prints.printUsers(userData);
   msgEvents.addSubmitEvent();
+  msgEvents.addClearMessageEvent();
 };
 
 function successFunction2 () {
@@ -17,6 +18,7 @@ function successFunction2 () {
   prints.printMessages(data.getUsers(), messageData);
   msgEvents.addSubmitEvent();
   msgEvents.addEditEvent();
+  msgEvents.addClearMessageEvent();
 };
 
 function WTF () {
