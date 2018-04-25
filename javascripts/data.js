@@ -29,12 +29,19 @@ const findUserByName = (name) => {
   return usersArray.find(user => user.userName === name);
 };
 
+const deleteMessage = (message) => {
+  const messageIndex = messagesArray.indexOf(message);
+  messagesArray.splice(messageIndex, 1);
+  console.log('messageArray: ',messagesArray);
+};
+
 module.exports = {
   setUsers,
   getUsers,
   setMessages,
   getMessages,
   findMessage,
+  deleteMessage,
   addMessage,
   findUser,
   findUserByName,

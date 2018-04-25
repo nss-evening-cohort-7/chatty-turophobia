@@ -43,8 +43,23 @@ const clearMessages = (e) => {
   };
 };
 
+const addDeleteEvent = () => {
+  const deleteButtons = document.getElementsByClassName('delete-btn');
+  const deleteBtnArray = Array.from(deleteButtons);
+  deleteBtnArray.forEach(btn => {
+    btn.addEventListener('click', removeMessage);
+  });
+};
+
+const removeMessage = (e) => {
+  const messageId = e.target.parentNode.parentNode.id;
+  const selectedMessage = data.findMessage(messageId);
+  data.deleteMessage(selectedMessage);
+};
+
 module.exports = {
   addSubmitEvent,
   timeStamp,
+  addDeleteEvent,
   addClearMessageEvent,
 };
