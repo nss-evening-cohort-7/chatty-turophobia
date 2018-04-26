@@ -17,6 +17,9 @@ const printUsers = usersArray => {
   });
 };
 const printMessages = (messages) => {
+  while (messages.length > 20) {
+    messages.pop();
+  }
   let domString = '';
   for (let i = 0; i < messages.length; i++) {
     const currentUser = findUser(messages[i].userId);
