@@ -1,4 +1,5 @@
 const addDeleteEvent = require('./msgEvents.js').addDeleteEvent;
+const addLargeTextEvent = require('./themeEvents.js');
 
 const printToDom = (domString, divId) => {
   document.getElementById(divId).innerHTML = domString;
@@ -21,7 +22,6 @@ const printMessages = (users, messages) => {
   let domString = '';
   for (let i = 0; i < users.length; i++) {
     domString += `<div id='${messages[i].id}' class='well well-sm clearfix'>`;
-    // domString += `<div class="pull-left">`;
     domString += `<h5>${users[i].userName}</h5>`;
     domString += `<div class="pull-left">`;
     for (let j = 0; j < messages.length; j++) {
@@ -37,6 +37,7 @@ const printMessages = (users, messages) => {
   }
   printToDom(domString, 'messages-output');
   addDeleteEvent();
+  addLargeTextEvent();
 
 };
 
