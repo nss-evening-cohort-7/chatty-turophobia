@@ -1,6 +1,11 @@
-body {
+/* body {
   background-color: blue;
-}
+  font-size: 150% !important;
+} */
+
+/* html {
+  font-size: 150%;
+} */
 
 .form-button, #input {
   width: 25em;
@@ -13,4 +18,24 @@ body {
 #width {
   display: inline;
   width: 70px;
+}
+
+.stormy {
+  background-image: url('../img/stormy.jpg');
+  background-size: cover;
+}
+
+.dark {
+  background-color: rgb(59, 6, 6) !important;
+  color: white;
+  border-color: rgb(134, 134, 134) !important;
+}
+
+.cheesy {
+  background-image: url('../img/cheesy.jpg');
+  background-size: cover;
+}
+
+.see-through {
+  opacity: .94;
 }
