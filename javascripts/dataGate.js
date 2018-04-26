@@ -16,9 +16,8 @@ function successFunction2 () {
   const messageData = JSON.parse(this.responseText).messages;
   data.setMessages(messageData);
   prints.printMessages(messageData);
-  msgEvents.addSubmitEvent();
   msgEvents.addEditEvent();
-  // msgEvents.addClearMessageEvent();
+  msgEvents.addDeleteEvent();
 };
 
 function WTF () {

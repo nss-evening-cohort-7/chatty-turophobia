@@ -4,7 +4,6 @@ const data = require('./data');
 const printMessages = require('./dom.js').printMessages;
 const grabInput = document.getElementById('input');
 const clearMessagesBtn = document.getElementById('clearMessagesBtn');
-const messages = document.getElementsByClassName('clear');
 let messageToEdit = [];
 
 const timeStamp = () => {
@@ -26,9 +25,7 @@ const submitMessage = (e) => {
         item.message = message;
       }
     });
-    console.log('Edited messages array: ', messageArray);
     data.setMessages(messageArray);
-    console.log('New Source of Truth MessageArray: ', data.getMessages());
     messageToEdit = [];
     grabInput.value = '';
   } else if (e.keyCode === 13 && message && messageToEdit.id !== true) {
@@ -37,7 +34,6 @@ const submitMessage = (e) => {
       .previousElementSibling.querySelector('.selected')
       .querySelector('.text').innerHTML;
     const user = data.findUserByName(userName).id;
-    // if (e.keyCode === 13 && message && user) {
     message = convertEmojis(message);
     const newMsg = new Message (user, message);
     data.addMessage(newMsg);
@@ -47,6 +43,7 @@ const submitMessage = (e) => {
   addEditEvent();
   addDeleteEvent();
 };
+
 const Message = (() => {
   let firstId = 6;
   return function Message (id, message) {
@@ -59,10 +56,7 @@ const Message = (() => {
 
 const clearMessages = (e) => {
   data.setMessages([]);
-  console.log(data.getMessages());
-  for (let i = 0; i < messages.length; i++) {
-    messages[i].innerHTML = '';
-  };
+  printMessages([]);
 };
 
 const addDeleteEvent = () => {
