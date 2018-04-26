@@ -20,7 +20,7 @@ const printMessages = (messages) => {
   let domString = '';
   for (let i = 0; i < messages.length; i++) {
     const currentUser = findUser(messages[i].userId);
-    domString += `<div id='${messages[i].id}' class='well well-sm clearfix'>`;
+    domString += `<div id='${messages[i].id}' class='well well-sm clearfix see-through'>`;
     domString +=  `<h5>${currentUser.userName}</h5>`;
     domString +=  `<div class="pull-left">`;
     domString +=    `<p>${messages[i].message}</p>`;
