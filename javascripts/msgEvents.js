@@ -1,9 +1,9 @@
 const convertEmojis = require('./emoji.js');
 const editButton = document.getElementsByClassName('edit-button');
 const data = require('./data');
+const printMessages = require('./dom.js').printMessages;
 const grabInput = document.getElementById('input');
 const clearMessagesBtn = document.getElementById('clearMessagesBtn');
-const messages = document.getElementsByClassName('clear');
 let messageToEdit = [];
 
 const timeStamp = () => {
@@ -18,32 +18,31 @@ const addClearMessageEvent = () => {
 
 const submitMessage = (e) => {
   let message = grabInput.value;
+  const messageArray = data.getMessages();
   if (e.keyCode === 13 && message && messageToEdit.id) {
-    const messages = data.getMessages();
-    messages.forEach((item) => {
+    messageArray.forEach((item) => {
       if (item.id === messageToEdit.id) {
         item.message = message;
       }
     });
-    console.log('Edited messages array: ', messages);
-    data.setMessages(messages);
-    console.log('New Source of Truth MessageArray: ', data.getMessages());
+    data.setMessages(messageArray);
     messageToEdit = [];
     grabInput.value = '';
   } else if (e.keyCode === 13 && message && messageToEdit.id !== true) {
-    console.log('This is the new Message: ', message);
     const userName = document.getElementById('selected-user')
       .previousElementSibling.querySelector('.selected')
       .querySelector('.text').innerHTML;
     const user = data.findUserByName(userName).id;
-    // if (e.keyCode === 13 && message && user) {
     message = convertEmojis(message);
     const newMsg = new Message (user, message);
     data.addMessage(newMsg);
     grabInput.value = '';
-
   }
+  printMessages(messageArray);
+  addEditEvent();
+  addDeleteEvent();
 };
+
 const Message = (() => {
   let firstId = 6;
   return function Message (id, message) {
@@ -56,10 +55,7 @@ const Message = (() => {
 
 const clearMessages = (e) => {
   data.setMessages([]);
-  console.log(data.getMessages());
-  for (let i = 0; i < messages.length; i++) {
-    messages[i].innerHTML = '';
-  };
+  printMessages([]);
 };
 
 const addDeleteEvent = () => {
@@ -74,6 +70,10 @@ const removeMessage = (e) => {
   const messageId = e.target.parentNode.parentNode.id;
   const selectedMessage = data.findMessage(messageId);
   data.deleteMessage(selectedMessage);
+  const newMessageArray = data.getMessages();
+  printMessages(newMessageArray);
+  addEditEvent();
+  addDeleteEvent();
 };
 
 const addEditEvent = () => {
@@ -83,10 +83,10 @@ const addEditEvent = () => {
 };
 
 const editMessage = (e) => {
-  const messageId = e.target.parentNode.previousSibling.children[0].id;
+  const messageId = e.target.parentNode.parentNode.id;
   messageToEdit = data.findMessage(messageId);
   grabInput.value = messageToEdit.message;
-  console.log('Message to Edit: ', messageToEdit);
+  grabInput.focus();
 };
 
 module.exports = {

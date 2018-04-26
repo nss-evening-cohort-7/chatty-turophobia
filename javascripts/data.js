@@ -1,5 +1,36 @@
 let usersArray = [];
-let messagesArray = [];
+let messagesArray = [
+  {
+    'id': 'item1',
+    'userId': 0,
+    'message': 'Hi, I really like coding. I would like to take a course in coding. Any suggestions?',
+    'timestamp': 'noon',
+  },
+  {
+    'id': 'item2',
+    'userId': 1,
+    'message': 'You should checkout NSS',
+    'timestamp': '1:03pm',
+  },
+  {
+    'id': 'item3',
+    'userId': 2,
+    'message': 'I heard good things about that school too. My friend attended it.',
+    'timestamp': '1:13pm',
+  },
+  {
+    'id': 'item4',
+    'userId': 3,
+    'message': 'Definitely checkout NSS. Also, if you decide to attend it, do PREWORK',
+    'timestamp': '1:33pm',
+  },
+  {
+    'id': 'item5',
+    'userId': 1,
+    'message': 'Yes, the prework is the team tree house from end course. I took it and liked it.',
+    'timestamp': '1:43pm',
+  },
+];
 
 const setUsers = (userData) => {
   usersArray = userData;
@@ -18,7 +49,7 @@ const getMessages = () => {
 };
 
 const addMessage = (message) => {
-  messagesArray.push(message);
+  messagesArray.unshift(message);
 };
 const findMessage = (id) => {
   return messagesArray.find(msg => msg.id === id);
@@ -33,7 +64,6 @@ const findUserByName = (name) => {
 const deleteMessage = (message) => {
   const messageIndex = messagesArray.indexOf(message);
   messagesArray.splice(messageIndex, 1);
-  console.log('messageArray: ',messagesArray);
 };
 
 module.exports = {
