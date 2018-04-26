@@ -49,7 +49,7 @@ const getMessages = () => {
 };
 
 const addMessage = (message) => {
-  messagesArray.push(message);
+  messagesArray.unshift(message);
 };
 const findMessage = (id) => {
   return messagesArray.find(msg => msg.id === id);
