@@ -7,11 +7,12 @@
   <title>Document</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="http://bgrins.github.io/spectrum/spectrum.css">
   <link rel="stylesheet" href="styles/main.css">
 </head>
-<body>
+<body id='body-background' class="cheesy">
 
-  <nav class="navbar navbar-default navbar-fixed-top">
+  <nav id='da-navbar' class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -35,29 +36,53 @@
               <input type="text" id='input' class="form-control form-input" placeholder="Enter Message">
             </div>
             <div class="btn-group" data-toggle="buttons">
+<<<<<<< HEAD
               <label class="btn btn-primary primary" id="large-text-checkbox" value=true>
                 <input type="checkbox" autocomplete="off">Large Font
+=======
+              <label class="btn btn-primary active">
+                <input type="checkbox" autocomplete="off"> Checkbox 1 (pre-checked)
+>>>>>>> master
               </label>
-              <label class="btn btn-primary">
-                <input type="checkbox" autocomplete="off"> Checkbox 2
+              <label id='dark-theme' class="btn btn-primary">
+                <input type="checkbox" autocomplete="off"> Dark Theme
               </label>
-              <label class="btn btn-primary">
-                <input type="checkbox" autocomplete="off"> Checkbox 3
-              </label>
+                <button id='custom-theme' class="btn btn-primary" data-toggle='modal' data-target='#theme-picker'> Custom Theme </button>
             </div>
             <button class="btn btn-default form-button" id="clearMessagesBtn">Clear Messages</button>
         </div>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
-    <div id='messages-output' class='container clear'></div>
 
+    <div id='messages-output' class='container clear'></div>
+    <div id='theme-picker' class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Custom Theme Picker</h4>
+          </div>
+          <div class="modal-body">
+            <p>Choose a background color:</p>
+            <input type="color" id="background-color">
+            <p>Choose a text color:</p>
+            <input type="color" id="text-color">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id='save-changes'>Save changes</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+  <script src='http://bgrins.github.io/spectrum/spectrum.js'></script>
   <script src="dist/app.js"></script>
 </body>
 </html>

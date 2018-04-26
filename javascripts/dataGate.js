@@ -2,6 +2,8 @@ const xhrs = require('./xhr.js');
 const data = require('./data.js');
 const prints = require('./dom.js');
 const msgEvents = require('./msgEvents.js');
+const themeEvents = require('./themeEvents.js');
+// const addLargeTextEvent = require('./themeEvents.js');
 
 function successFunction1 () {
   const userData = JSON.parse(this.responseText).users;
@@ -15,10 +17,12 @@ function successFunction1 () {
 function successFunction2 () {
   const messageData = JSON.parse(this.responseText).messages;
   data.setMessages(messageData);
-  prints.printMessages(data.getUsers(), messageData);
-  msgEvents.addSubmitEvent();
+  prints.printMessages(messageData);
   msgEvents.addEditEvent();
   msgEvents.addClearMessageEvent();
+  themeEvents.addDarkThemeEvent();
+  msgEvents.addDeleteEvent();
+
 };
 
 function WTF () {
