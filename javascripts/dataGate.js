@@ -20,7 +20,9 @@ function successFunction2 () {
   msgEvents.addEditEvent();
   msgEvents.addClearMessageEvent();
   themeEvents.addDarkThemeEvent();
+  themeEvents.addLargeTextEvent();
   msgEvents.addDeleteEvent();
+
 };
 
 function WTF () {
