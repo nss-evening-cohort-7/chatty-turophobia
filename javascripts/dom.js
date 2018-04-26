@@ -1,6 +1,3 @@
-
-const addDeleteEvent = require('./msgEvents.js').addDeleteEvent;
-const addLargeTextEvent = require('./themeEvents.js');
 const findUser = require('./data.js').findUser;
 
 const printToDom = (domString, divId) => {
