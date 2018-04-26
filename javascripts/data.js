@@ -64,7 +64,6 @@ const findUserByName = (name) => {
 const deleteMessage = (message) => {
   const messageIndex = messagesArray.indexOf(message);
   messagesArray.splice(messageIndex, 1);
-  console.log('messageArray: ',messagesArray);
 };
 
 module.exports = {
