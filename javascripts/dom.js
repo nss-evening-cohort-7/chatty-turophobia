@@ -1,11 +1,10 @@
-const addDeleteEvent = require('./msgEvents.js').addDeleteEvent;
+const findUser = require('./data.js').findUser;
 
 const printToDom = (domString, divId) => {
   document.getElementById(divId).innerHTML = domString;
 };
 
 const printUsers = usersArray => {
-  console.log(usersArray);
   let domString = '';
   domString +=       `<select id="selected-user" class="selectpicker form-control navbar-btn" title="Choose user...">`;
   usersArray.forEach ((user) => {
@@ -17,27 +16,22 @@ const printUsers = usersArray => {
     $('.selectpicker').selectpicker();
   });
 };
-const printMessages = (users, messages) => {
+const printMessages = (messages) => {
   let domString = '';
-  for (let i = 0; i < users.length; i++) {
-    domString += `<div id='${messages[i].id}' class='well well-sm clearfix'>`;
-    // domString += `<div class="pull-left">`;
-    domString += `<h5>${users[i].userName}</h5>`;
-    domString += `<div class="pull-left">`;
-    for (let j = 0; j < messages.length; j++) {
-      if (users[i].id === messages[j].userId)
-        domString += `<p id='${messages[j].id}'>${messages[i].message}</p>`;
-    }
-    domString += `</div>`;
-    domString += `<div class="pull-right">`;
-    domString += `<button class="btn btn-default edit-button" type="submit">Edit</button>`;
-    domString += `<button class="btn btn-default delete-btn" type="submit">Delete</button>`;
-    domString += `</div>`;
+  for (let i = 0; i < messages.length; i++) {
+    const currentUser = findUser(messages[i].userId);
+    domString += `<div id='${messages[i].id}' class='well well-sm clearfix see-through'>`;
+    domString +=  `<h5>${currentUser.userName}</h5>`;
+    domString +=  `<div class="pull-left">`;
+    domString +=    `<p>${messages[i].message}</p>`;
+    domString +=  `</div>`;
+    domString +=  `<div class="pull-right">`;
+    domString +=    `<button class="btn btn-default edit-button" type="submit">Edit</button>`;
+    domString +=    `<button class="btn btn-default delete-btn" type="submit">Delete</button>`;
+    domString +=  `</div>`;
     domString += `</div>`;
   }
   printToDom(domString, 'messages-output');
-  addDeleteEvent();
-
 };
 
 module.exports = {

@@ -16,11 +16,11 @@ function successFunction1 () {
 function successFunction2 () {
   const messageData = JSON.parse(this.responseText).messages;
   data.setMessages(messageData);
-  prints.printMessages(data.getUsers(), messageData);
-  msgEvents.addSubmitEvent();
+  prints.printMessages(messageData);
   msgEvents.addEditEvent();
   msgEvents.addClearMessageEvent();
   themeEvents.addDarkThemeEvent();
+  msgEvents.addDeleteEvent();
 };
 
 function WTF () {

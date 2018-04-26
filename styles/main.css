@@ -19,3 +19,18 @@ body {
   background-image: url('../img/stormy.jpg');
   background-size: cover;
 }
+
+.dark {
+  background-color: rgb(59, 6, 6) !important;
+  color: white;
+  border-color: rgb(134, 134, 134) !important;
+}
+
+.cheesy {
+  background-image: url('../img/cheesy.jpg');
+  background-size: cover;
+}
+
+.see-through {
+  opacity: .94;
+}

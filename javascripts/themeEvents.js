@@ -6,15 +6,32 @@ const addDarkThemeEvent = () => {
 
 const darkTheme = (e) => {
   const backgroundChange = document.getElementById('body-background');
-  console.log('Event: ', e);
-  console.log('DarkCheck: ', darkCheckBox);
+  const daNavBar = document.getElementById('da-navbar');
+  const labels = document.getElementsByTagName('label');
+  const wells = document.getElementsByClassName('well');
+
   const isChecked = e.target.children[0].checked;
-  console.log('isChecked: ', isChecked);
   if (isChecked === false) {
     console.log('body: ', backgroundChange);
+    backgroundChange.classList.remove('cheesy');
     backgroundChange.classList.add('stormy');
+    daNavBar.classList.add('dark');
+    for (let i = 0; i < labels.length; i++) {
+      labels[i].classList.add('dark');
+    }
+    for (let j = 0; j < wells.length; j++) {
+      wells[j].classList.add('dark');
+    }
   } else if (isChecked) {
     backgroundChange.classList.remove('stormy');
+    backgroundChange.classList.add('cheesy');
+    daNavBar.classList.remove('dark');
+    for (let i = 0; i < labels.length; i++) {
+      labels[i].classList.remove('dark');
+    }
+    for (let j = 0; j < wells.length; j++) {
+      wells[j].classList.remove('dark');
+    }
   }
 };
 
