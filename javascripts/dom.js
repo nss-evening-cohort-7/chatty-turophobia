@@ -5,7 +5,6 @@ const printToDom = (domString, divId) => {
 };
 
 const printUsers = usersArray => {
-  console.log(usersArray);
   let domString = '';
   domString +=       `<select id="selected-user" class="selectpicker form-control navbar-btn" title="Choose user...">`;
   usersArray.forEach ((user) => {

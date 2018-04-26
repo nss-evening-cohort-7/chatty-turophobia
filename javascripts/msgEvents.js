@@ -29,7 +29,6 @@ const submitMessage = (e) => {
     messageToEdit = [];
     grabInput.value = '';
   } else if (e.keyCode === 13 && message && messageToEdit.id !== true) {
-    console.log('This is the new Message: ', message);
     const userName = document.getElementById('selected-user')
       .previousElementSibling.querySelector('.selected')
       .querySelector('.text').innerHTML;
@@ -87,7 +86,6 @@ const editMessage = (e) => {
   const messageId = e.target.parentNode.parentNode.id;
   messageToEdit = data.findMessage(messageId);
   grabInput.value = messageToEdit.message;
-  console.log('Message to Edit: ', messageToEdit);
 };
 
 module.exports = {
