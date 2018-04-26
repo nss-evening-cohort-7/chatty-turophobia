@@ -2,6 +2,7 @@ const xhrs = require('./xhr.js');
 const data = require('./data.js');
 const prints = require('./dom.js');
 const msgEvents = require('./msgEvents.js');
+const themeEvents = require('./themeEvents.js');
 
 function successFunction1 () {
   const userData = JSON.parse(this.responseText).users;
@@ -19,6 +20,7 @@ function successFunction2 () {
   msgEvents.addSubmitEvent();
   msgEvents.addEditEvent();
   msgEvents.addClearMessageEvent();
+  themeEvents.addDarkThemeEvent();
 };
 
 function WTF () {
