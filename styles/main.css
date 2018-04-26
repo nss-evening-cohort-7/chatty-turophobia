@@ -1,6 +1,11 @@
-body {
+/* body {
   background-color: blue;
-}
+  font-size: 150% !important;
+} */
+
+/* html {
+  font-size: 150%;
+} */
 
 .form-button, #input {
   width: 25em;

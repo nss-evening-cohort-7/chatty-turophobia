@@ -35,6 +35,14 @@ const darkTheme = (e) => {
   }
 };
 
+function changeCSS (cssFile) {
+  const changeLink = document.getElementsByTagName('link').item(0);
+  changeLink.removeAttribute('integrity');
+  changeLink.setAttribute('href', cssFile);
+}
+
+changeCSS('../styles/bootstrap.min.css');
+
 module.exports = {
   addDarkThemeEvent,
 };
