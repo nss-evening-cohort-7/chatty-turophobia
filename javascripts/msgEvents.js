@@ -1,4 +1,3 @@
-const convertEmojis = require('./emoji.js');
 const editButton = document.getElementsByClassName('edit-button');
 const data = require('./data');
 const printMessages = require('./dom.js').printMessages;
@@ -17,7 +16,7 @@ const addClearMessageEvent = () => {
 };
 
 const submitMessage = (e) => {
-  let message = grabInput.value;
+  const message = grabInput.value;
   const messageArray = data.getMessages();
   if (e.keyCode === 13 && message && messageToEdit.id) {
     messageArray.forEach((item) => {
@@ -33,7 +32,6 @@ const submitMessage = (e) => {
       .previousElementSibling.querySelector('.selected')
       .querySelector('.text').innerHTML;
     const user = data.findUserByName(userName).id;
-    message = convertEmojis(message);
     const newMsg = new Message (user, message);
     data.addMessage(newMsg);
     grabInput.value = '';
