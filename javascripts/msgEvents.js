@@ -86,6 +86,7 @@ const editMessage = (e) => {
   const messageId = e.target.parentNode.parentNode.id;
   messageToEdit = data.findMessage(messageId);
   grabInput.value = messageToEdit.message;
+  grabInput.focus();
 };
 
 module.exports = {
