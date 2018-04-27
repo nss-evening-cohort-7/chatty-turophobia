@@ -77,5 +77,4 @@ changeCSS('../styles/bootstrap.min.css');
 module.exports = {
   addDarkThemeEvent,
   addThemePickerEvent,
-  darkTheme,
 };
