@@ -9,6 +9,7 @@ let messageToEdit = [];
 const timeStamp = () => {
   return new Date().toLocaleString();
 };
+
 const addSubmitEvent = () => {
   grabInput.addEventListener('keypress', submitMessage);
 };
@@ -23,6 +24,7 @@ const submitMessage = (e) => {
     messageArray.forEach((item) => {
       if (item.id === messageToEdit.id) {
         item.message = message;
+        item.timestamp = timeStamp();
       }
     });
     data.setMessages(messageArray);
