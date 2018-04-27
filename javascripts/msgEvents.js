@@ -15,33 +15,7 @@ const addClearMessageEvent = () => {
   clearMessagesBtn.addEventListener('click', clearMessages);
 };
 
-const submitMessage = (e) => {
-  const message = grabInput.value;
-  const messageArray = data.getMessages();
-  if (e.keyCode === 13 && message && messageToEdit.id) {
-    messageArray.forEach((item) => {
-      if (item.id === messageToEdit.id) {
-        item.message = message;
-      }
-    });
-    data.setMessages(messageArray);
-    messageToEdit = [];
-    grabInput.value = '';
-    printMessages(messageArray);
-    addEditEvent();
-    addDeleteEvent();
-  } else if (e.keyCode === 13 && message && messageToEdit.id !== true) {
-    const userName = document.getElementById('selected-user')
-      .previousElementSibling.querySelector('.selected')
-      .querySelector('.text').innerHTML;
-    const user = data.findUserByName(userName).id;
-    const newMsg = new Message (user, message);
-    data.addMessage(newMsg);
-    grabInput.value = '';
-    printMessages(messageArray);
-    addEditEvent();
-    addDeleteEvent();
-  }
+const goshDarnDark = () => {
 
   const isChecked = document.getElementById('dark-theme').children[0].checked;
   const backgroundChange = document.getElementById('body-background');
@@ -73,6 +47,36 @@ const submitMessage = (e) => {
       wells[j].classList.remove('dark');
     }
   }
+};
+
+const submitMessage = (e) => {
+  const message = grabInput.value;
+  const messageArray = data.getMessages();
+  if (e.keyCode === 13 && message && messageToEdit.id) {
+    messageArray.forEach((item) => {
+      if (item.id === messageToEdit.id) {
+        item.message = message;
+      }
+    });
+    data.setMessages(messageArray);
+    messageToEdit = [];
+    grabInput.value = '';
+    printMessages(messageArray);
+    addEditEvent();
+    addDeleteEvent();
+  } else if (e.keyCode === 13 && message && messageToEdit.id !== true) {
+    const userName = document.getElementById('selected-user')
+      .previousElementSibling.querySelector('.selected')
+      .querySelector('.text').innerHTML;
+    const user = data.findUserByName(userName).id;
+    const newMsg = new Message (user, message);
+    data.addMessage(newMsg);
+    grabInput.value = '';
+    printMessages(messageArray);
+    addEditEvent();
+    addDeleteEvent();
+  }
+  goshDarnDark();
 };
 
 const Message = (() => {
@@ -125,6 +129,7 @@ const removeMessage = (e) => {
   printMessages(newMessageArray);
   addEditEvent();
   addDeleteEvent();
+  goshDarnDark();
 };
 
 const addEditEvent = () => {
