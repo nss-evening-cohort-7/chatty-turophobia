@@ -28,7 +28,7 @@ const printMessages = (messages) => {
     domString += `<div id='${messages[i].id}' class='well well-sm clearfix see-through'>`;
     domString +=  `<h5>${currentUser.userName}</h5>`;
     domString +=  `<div class="pull-left">`;
-    domString +=    `<p>${checkedMessage}</p>`;
+    domString +=    `<p>${checkedMessage}  <small class='bg-info'>${messages[i].timestamp}</small></p>`;
     domString +=  `</div>`;
     domString +=  `<div class="pull-right">`;
     domString +=    `<button class="btn btn-default edit-button" type="submit">Edit</button>`;
