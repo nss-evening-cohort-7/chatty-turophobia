@@ -56,6 +56,25 @@ const Message = (() => {
 const clearMessages = (e) => {
   data.setMessages([]);
   printMessages([]);
+  disableClearMessageBtn(e);
+};
+
+const disableClearMessageBtn = (e) => {
+  if (data.getMessages().length === 0) {
+    clearMessagesBtn.disabled = true;
+    unableClearMessageBtn(e);
+  }
+};
+
+const unableClearMessageBtn = (e) => {
+  grabInput.addEventListener('input', () => {
+    console.log('unable');
+    clearMessagesBtn.disabled = false;
+    submitMessage(e);
+    if (grabInput.value === '') {
+      disableClearMessageBtn(e);
+    };
+  });
 };
 
 const addDeleteEvent = () => {
@@ -95,4 +114,5 @@ module.exports = {
   timeStamp,
   addDeleteEvent,
   addClearMessageEvent,
+  // disableClearMessageBtn,
 };
