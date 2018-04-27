@@ -20,7 +20,12 @@
 }
 .stormy {
   background-image: url('../img/stormy.jpg');
+  background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  max-height: 100vh !important;
+  max-width: 100vw !important;
 }
 
 .dark {
@@ -31,13 +36,15 @@
 
 .cheesy {
   background-image: url('../img/cheesy.jpg');
-  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100vh;
+  width: 100vw;
+  max-height: 100vh !important;
+  max-width: 100vw !important;
 }
 
 .see-through {
   opacity: .94;
 }
 
-/* body{
-  font-size: 40px !important;
-} */

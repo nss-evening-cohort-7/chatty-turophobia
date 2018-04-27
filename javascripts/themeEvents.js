@@ -30,33 +30,39 @@ const addDarkThemeEvent = () => {
   darkCheckBox.addEventListener('click', darkTheme);
 };
 
-const darkTheme = (e) => {
-  const backgroundChange = document.getElementById('body-background');
-  const daNavBar = document.getElementById('da-navbar');
-  const labels = document.getElementsByTagName('label');
-  const wells = document.getElementsByClassName('well');
+const darkTheme = () => {
+  window.setTimeout(runDarkTheme, 1);
 
-  const isChecked = e.target.children[0].checked;
-  if (isChecked === false) {
-    console.log('body: ', backgroundChange);
-    backgroundChange.classList.remove('cheesy');
-    backgroundChange.classList.add('stormy');
-    daNavBar.classList.add('dark');
-    for (let i = 0; i < labels.length; i++) {
-      labels[i].classList.add('dark');
-    }
-    for (let j = 0; j < wells.length; j++) {
-      wells[j].classList.add('dark');
-    }
-  } else if (isChecked) {
-    backgroundChange.classList.remove('stormy');
-    backgroundChange.classList.add('cheesy');
-    daNavBar.classList.remove('dark');
-    for (let i = 0; i < labels.length; i++) {
-      labels[i].classList.remove('dark');
-    }
-    for (let j = 0; j < wells.length; j++) {
-      wells[j].classList.remove('dark');
+  function runDarkTheme () {
+
+    const backgroundChange = document.getElementById('body-background');
+    const daNavBar = document.getElementById('da-navbar');
+    const labels = document.getElementsByTagName('label');
+    const wells = document.getElementsByClassName('well');
+
+    const isChecked = document.getElementById('dark-theme').children[0].checked;
+    console.log('ischecked: ', isChecked);
+    if (isChecked === true) {
+      console.log('body: ', backgroundChange);
+      backgroundChange.classList.remove('cheesy');
+      backgroundChange.classList.add('stormy');
+      daNavBar.classList.add('dark');
+      for (let i = 0; i < labels.length; i++) {
+        labels[i].classList.add('dark');
+      }
+      for (let j = 0; j < wells.length; j++) {
+        wells[j].classList.add('dark');
+      }
+    } else if (isChecked === false) {
+      backgroundChange.classList.remove('stormy');
+      backgroundChange.classList.add('cheesy');
+      daNavBar.classList.remove('dark');
+      for (let i = 0; i < labels.length; i++) {
+        labels[i].classList.remove('dark');
+      }
+      for (let j = 0; j < wells.length; j++) {
+        wells[j].classList.remove('dark');
+      }
     }
   }
 };

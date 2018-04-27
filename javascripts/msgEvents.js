@@ -15,6 +15,40 @@ const addClearMessageEvent = () => {
   clearMessagesBtn.addEventListener('click', clearMessages);
 };
 
+const goshDarnDark = () => {
+
+  const isChecked = document.getElementById('dark-theme').children[0].checked;
+  const backgroundChange = document.getElementById('body-background');
+  const daNavBar = document.getElementById('da-navbar');
+  const labels = document.getElementsByTagName('label');
+  const wells = document.getElementsByClassName('well');
+
+  if (isChecked === true) {
+    console.log('THIS IS HAPPENING');
+    console.log('body: ', backgroundChange);
+    backgroundChange.classList.remove('cheesy');
+    backgroundChange.classList.add('stormy');
+    daNavBar.classList.add('dark');
+    for (let i = 0; i < labels.length; i++) {
+      labels[i].classList.add('dark');
+    }
+    for (let j = 0; j < wells.length; j++) {
+      wells[j].classList.add('dark');
+    }
+  } else if (isChecked === false) {
+    console.log('FALSE IS HAPPENING');
+    backgroundChange.classList.remove('stormy');
+    backgroundChange.classList.add('cheesy');
+    daNavBar.classList.remove('dark');
+    for (let i = 0; i < labels.length; i++) {
+      labels[i].classList.remove('dark');
+    }
+    for (let j = 0; j < wells.length; j++) {
+      wells[j].classList.remove('dark');
+    }
+  }
+};
+
 const submitMessage = (e) => {
   const message = grabInput.value;
   const messageArray = data.getMessages();
@@ -27,6 +61,9 @@ const submitMessage = (e) => {
     data.setMessages(messageArray);
     messageToEdit = [];
     grabInput.value = '';
+    printMessages(messageArray);
+    addEditEvent();
+    addDeleteEvent();
   } else if (e.keyCode === 13 && message && messageToEdit.id !== true) {
     const userName = document.getElementById('selected-user')
       .previousElementSibling.querySelector('.selected')
@@ -35,10 +72,11 @@ const submitMessage = (e) => {
     const newMsg = new Message (user, message);
     data.addMessage(newMsg);
     grabInput.value = '';
+    printMessages(messageArray);
+    addEditEvent();
+    addDeleteEvent();
   }
-  printMessages(messageArray);
-  addEditEvent();
-  addDeleteEvent();
+  goshDarnDark();
 };
 
 const Message = (() => {
@@ -54,6 +92,25 @@ const Message = (() => {
 const clearMessages = (e) => {
   data.setMessages([]);
   printMessages([]);
+  disableClearMessageBtn(e);
+};
+
+const disableClearMessageBtn = (e) => {
+  if (data.getMessages().length === 0) {
+    clearMessagesBtn.disabled = true;
+    unableClearMessageBtn(e);
+  }
+};
+
+const unableClearMessageBtn = (e) => {
+  grabInput.addEventListener('input', () => {
+    console.log('unable');
+    clearMessagesBtn.disabled = false;
+    submitMessage(e);
+    if (grabInput.value === '') {
+      disableClearMessageBtn(e);
+    };
+  });
 };
 
 const addDeleteEvent = () => {
@@ -72,6 +129,7 @@ const removeMessage = (e) => {
   printMessages(newMessageArray);
   addEditEvent();
   addDeleteEvent();
+  goshDarnDark();
 };
 
 const addEditEvent = () => {
