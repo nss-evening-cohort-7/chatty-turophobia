@@ -36,8 +36,8 @@
               <input type="text" id='input' class="form-control form-input" placeholder="Enter Message">
             </div>
             <div class="btn-group" data-toggle="buttons">
-              <label class="btn btn-primary active">
-                <input type="checkbox" autocomplete="off"> Checkbox 1 (pre-checked)
+              <label class="btn btn-primary primary" id="large-text-checkbox" value=true>
+                <input type="checkbox" autocomplete="off">Large Text
               </label>
               <label id='dark-theme' class="btn btn-primary">
                 <input type="checkbox" autocomplete="off"> Dark Theme
@@ -50,6 +50,7 @@
     </div><!-- /.container-fluid -->
   </nav>
 
+    <!--  Modal -->
     <div id='messages-output' class='container clear'></div>
     <div id='theme-picker' class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -61,6 +62,8 @@
           <div class="modal-body">
             <p>Choose a background color:</p>
             <input type="color" id="background-color">
+            <P>Or choose a background Image:</P>
+            <button><img src="" alt=""></button>
             <p>Choose a text color:</p>
             <input type="color" id="text-color">
           </div>

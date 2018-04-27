@@ -1,4 +1,5 @@
 const findUser = require('./data.js').findUser;
+const checkEmojis = require('./emoji.js');
 
 const printToDom = (domString, divId) => {
   document.getElementById(divId).innerHTML = domString;
@@ -17,13 +18,17 @@ const printUsers = usersArray => {
   });
 };
 const printMessages = (messages) => {
+  while (messages.length > 20) {
+    messages.pop();
+  }
   let domString = '';
   for (let i = 0; i < messages.length; i++) {
     const currentUser = findUser(messages[i].userId);
+    const checkedMessage = checkEmojis(messages[i].message);
     domString += `<div id='${messages[i].id}' class='well well-sm clearfix see-through'>`;
     domString +=  `<h5>${currentUser.userName}</h5>`;
     domString +=  `<div class="pull-left">`;
-    domString +=    `<p>${messages[i].message}</p>`;
+    domString +=    `<p>${checkedMessage}  <small class='bg-info'>${messages[i].timestamp}</small></p>`;
     domString +=  `</div>`;
     domString +=  `<div class="pull-right">`;
     domString +=    `<button class="btn btn-default edit-button" type="submit">Edit</button>`;

@@ -11,15 +11,13 @@
   width: 25em;
 }
 
-#messages-output {
-  margin-top: 70px;
-}
-
 #width {
   display: inline;
-  width: 70px;
 }
 
+#messages-output {
+  margin-top: 110px;
+}
 .stormy {
   background-image: url('../img/stormy.jpg');
   background-repeat: no-repeat;
@@ -49,3 +47,4 @@
 .see-through {
   opacity: .94;
 }
+

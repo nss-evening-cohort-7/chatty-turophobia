@@ -2,6 +2,7 @@ const customThemeBtn = document.getElementById('custom-theme');
 const saveChangesBtn = document.getElementById('save-changes');
 const darkCheckBox = document.getElementById('dark-theme');
 const body = document.getElementsByTagName('body')[0];
+const messagesOutput = document.getElementById('messages-output');
 const $backgroundColor = $('#background-color');
 const $textColor = $('#text-color');
 
@@ -66,15 +67,36 @@ const darkTheme = () => {
   }
 };
 
+const largeTextCheckbox = document.getElementById('large-text-checkbox');
+
+const addLargeTextEvent = () => {
+  largeTextCheckbox.addEventListener('click', increaseFontSize);
+};
+
+const increaseFontSize = (e) => {
+  if (!e.target.classList.contains('active')) {
+    changeCSS('../styles/bootstrap.min.css');
+    messagesOutput.style.marginTop = '150px';
+  } else if (e.target.classList.contains('active')) {
+    changeCSSBack ('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', 'sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u');
+    messagesOutput.style.marginTop = '110px';
+  }
+};
+
 function changeCSS (cssFile) {
   const changeLink = document.getElementsByTagName('link').item(0);
   changeLink.removeAttribute('integrity');
   changeLink.setAttribute('href', cssFile);
 }
 
-changeCSS('../styles/bootstrap.min.css');
+function changeCSSBack (cdn, value) {
+  const changeLink = document.getElementsByTagName('link').item(0);
+  changeLink.setAttribute('href', cdn);
+  changeLink.setAttribute('integrity', value);
+}
 
 module.exports = {
   addDarkThemeEvent,
   addThemePickerEvent,
+  addLargeTextEvent,
 };
