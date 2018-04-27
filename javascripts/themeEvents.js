@@ -42,6 +42,12 @@ const linearGradientAndImg = () => {
   } else if (backgroundChange.classList.contains('stormy')) {
     linearGradientString = changeImgAndNewBackgrColor('../img/stormy.jpg');
     return linearGradientString;
+  } else if (backgroundChange.classList.contains('custom1')) {
+    linearGradientString = changeImgAndNewBackgrColor('../img/stormy2.jpg');
+    return linearGradientString;
+  } else if (backgroundChange.classList.contains('custom2')) {
+    linearGradientString = changeImgAndNewBackgrColor('../img/cheesy2.jpg');
+    return linearGradientString;
   }
 };
 
@@ -69,31 +75,34 @@ const darkTheme = () => {
 
     console.log('ischecked: ', isChecked);
     if (isChecked === true) {
-      if (backgroundChange.classList.contains('cheesy')) {
+      if (backgroundChange.classList.contains('cheesy') || backgroundChange.classList.contains('custom1') || backgroundChange.classList.contains('custom2')) {
         changeImgAndNewBackgrColor('../img/stormy.jpg');
       }
-      console.log('body: ', backgroundChange);
-      backgroundChange.classList.remove('cheesy');
+
+      backgroundChange.classList.remove('cheesy', 'custom1', 'custom2');
       backgroundChange.classList.add('stormy');
+      daNavBar.classList.remove('custom1-dark', 'custom2-light');
       daNavBar.classList.add('dark');
       for (let i = 0; i < labels.length; i++) {
+        labels[i].classList.remove('custom1-dark', 'custom2-light');
         labels[i].classList.add('dark');
       }
       for (let j = 0; j < wells.length; j++) {
+        wells[j].classList.remove('custom1-dark', 'custom2-light');
         wells[j].classList.add('dark');
       }
     } else if (isChecked === false) {
-      if (backgroundChange.classList.contains('stormy')) {
+      if (backgroundChange.classList.contains('stormy') || backgroundChange.classList.contains('custom1') || backgroundChange.classList.contains('custom2')) {
         changeImgAndNewBackgrColor('../img/cheesy.jpg');
       }
       backgroundChange.classList.remove('stormy');
       backgroundChange.classList.add('cheesy');
-      daNavBar.classList.remove('dark');
+      daNavBar.classList.remove('dark', 'custom1-dark', 'custom2-light');
       for (let i = 0; i < labels.length; i++) {
-        labels[i].classList.remove('dark');
+        labels[i].classList.remove('dark', 'custom1-dark', 'custom2-light');
       }
       for (let j = 0; j < wells.length; j++) {
-        wells[j].classList.remove('dark');
+        wells[j].classList.remove('dark', 'custom1-dark', 'custom2-light');
       }
     }
   }
