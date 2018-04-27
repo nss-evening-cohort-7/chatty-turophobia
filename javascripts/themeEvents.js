@@ -55,37 +55,43 @@ const addDarkThemeEvent = () => {
   darkCheckBox.addEventListener('click', darkTheme);
 };
 
-const darkTheme = (e) => {
-  const daNavBar = document.getElementById('da-navbar');
-  const labels = document.getElementsByTagName('label');
-  const wells = document.getElementsByClassName('well');
-  const isChecked = e.target.children[0].checked;
-  if (isChecked === false) {
-    if (backgroundChange.classList.contains('cheesy')) {
-      changeImgAndNewBackgrColor('../img/stormy.jpg');
-    }
-    console.log('body: ', backgroundChange);
-    backgroundChange.classList.remove('cheesy');
-    backgroundChange.classList.add('stormy');
-    daNavBar.classList.add('dark');
-    for (let i = 0; i < labels.length; i++) {
-      labels[i].classList.add('dark');
-    }
-    for (let j = 0; j < wells.length; j++) {
-      wells[j].classList.add('dark');
-    }
-  } else if (isChecked) {
-    if (backgroundChange.classList.contains('stormy')) {
-      changeImgAndNewBackgrColor('../img/cheesy.jpg');
-    }
-    backgroundChange.classList.remove('stormy');
-    backgroundChange.classList.add('cheesy');
-    daNavBar.classList.remove('dark');
-    for (let i = 0; i < labels.length; i++) {
-      labels[i].classList.remove('dark');
-    }
-    for (let j = 0; j < wells.length; j++) {
-      wells[j].classList.remove('dark');
+const darkTheme = () => {
+  window.setTimeout(runDarkTheme, 1);
+
+  function runDarkTheme () {
+    const daNavBar = document.getElementById('da-navbar');
+    const labels = document.getElementsByTagName('label');
+    const wells = document.getElementsByClassName('well');
+    const isChecked = document.getElementById('dark-theme').children[0].checked;
+
+    console.log('ischecked: ', isChecked);
+    if (isChecked === true) {
+      if (backgroundChange.classList.contains('cheesy')) {
+        changeImgAndNewBackgrColor('../img/stormy.jpg');
+      }
+      console.log('body: ', backgroundChange);
+      backgroundChange.classList.remove('cheesy');
+      backgroundChange.classList.add('stormy');
+      daNavBar.classList.add('dark');
+      for (let i = 0; i < labels.length; i++) {
+        labels[i].classList.add('dark');
+      }
+      for (let j = 0; j < wells.length; j++) {
+        wells[j].classList.add('dark');
+      }
+    } else if (isChecked === false) {
+      if (backgroundChange.classList.contains('stormy')) {
+        changeImgAndNewBackgrColor('../img/cheesy.jpg');
+      }
+      backgroundChange.classList.remove('stormy');
+      backgroundChange.classList.add('cheesy');
+      daNavBar.classList.remove('dark');
+      for (let i = 0; i < labels.length; i++) {
+        labels[i].classList.remove('dark');
+      }
+      for (let j = 0; j < wells.length; j++) {
+        wells[j].classList.remove('dark');
+      }
     }
   }
 };
