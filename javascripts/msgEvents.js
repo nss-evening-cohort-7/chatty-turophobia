@@ -49,6 +49,20 @@ const goshDarnDark = () => {
   }
 };
 
+const showAlert = () => {
+  const alertBox = document.createElement('div');
+  const input = document.getElementById('input');
+  let alertString = '';
+  alertString += `<div class="alert alert-danger fade in" role="alert">`;
+  alertString +=  `<button type="button" class="close" data-dismiss="alert" aria-label="Close">`;
+  alertString +=  `<span aria-hidden="true">&times;</span>`;
+  alertString +=  `</button>`;
+  alertString +=  `<strong>Woops!</strong> Looks like you still need to choose a user`;
+  alertString += `</div>`;
+  alertBox.innerHTML = alertString;
+  input.parentNode.appendChild(alertBox);
+};
+
 const submitMessage = (e) => {
   const message = grabInput.value;
   const messageArray = data.getMessages();
@@ -56,6 +70,7 @@ const submitMessage = (e) => {
     messageArray.forEach((item) => {
       if (item.id === messageToEdit.id) {
         item.message = message;
+        item.timestamp = timeStamp();
       }
     });
     data.setMessages(messageArray);
@@ -75,6 +90,8 @@ const submitMessage = (e) => {
     printMessages(messageArray);
     addEditEvent();
     addDeleteEvent();
+  } else if (e.keyCode === 13 && message) {
+    showAlert();
   }
   goshDarnDark();
 };
