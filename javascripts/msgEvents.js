@@ -49,20 +49,26 @@ const goshDarnDark = () => {
   }
 };
 
+const buildAlert = (alertDiv) => {
+  let alertString = '';
+  alertString += `<div class="alert alert-danger fade in" role="alert">`;
+  alertString +=  `<button type="button" class="close" data-dismiss="alert" aria-label="Close">`;
+  alertString +=  `<span aria-hidden="true">&times;</span>`;
+  alertString +=  `</button>`;
+  alertString +=  `<strong>Woops!</strong> Looks like you still need to choose a user`;
+  alertString += `</div>`;
+  alertDiv.innerHTML = alertString;
+};
+
 const showAlert = () => {
   const alertDiv = document.getElementById('alert-div');
   if (alertDiv) {
+    buildAlert(alertDiv);
+  } else {
     const alertBox = document.createElement('div');
     alertBox.setAttribute('id', 'alert-div');
     const input = document.getElementById('input');
-    let alertString = '';
-    alertString += `<div class="alert alert-danger fade in" role="alert">`;
-    alertString +=  `<button type="button" class="close" data-dismiss="alert" aria-label="Close">`;
-    alertString +=  `<span aria-hidden="true">&times;</span>`;
-    alertString +=  `</button>`;
-    alertString +=  `<strong>Woops!</strong> Looks like you still need to choose a user`;
-    alertString += `</div>`;
-    alertBox.innerHTML = alertString;
+    buildAlert(alertBox);
     input.parentNode.appendChild(alertBox);
   }
 };
