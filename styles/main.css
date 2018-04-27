@@ -11,14 +11,13 @@
   width: 25em;
 }
 
-#messages-output {
-  margin-top: 110px;
-}
-
 #width {
   display: inline;
 }
 
+#messages-output {
+  margin-top: 110px;
+}
 .stormy {
   background-image: url('../img/stormy.jpg');
   background-size: cover;
