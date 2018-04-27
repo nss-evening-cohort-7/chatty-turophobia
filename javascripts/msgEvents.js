@@ -1,4 +1,3 @@
-const convertEmojis = require('./emoji.js');
 const editButton = document.getElementsByClassName('edit-button');
 const data = require('./data');
 const printMessages = require('./dom.js').printMessages;
@@ -9,7 +8,6 @@ let messageToEdit = [];
 const timeStamp = () => {
   return new Date().toLocaleString();
 };
-
 const addSubmitEvent = () => {
   grabInput.addEventListener('keypress', submitMessage);
 };
@@ -18,13 +16,12 @@ const addClearMessageEvent = () => {
 };
 
 const submitMessage = (e) => {
-  let message = grabInput.value;
+  const message = grabInput.value;
   const messageArray = data.getMessages();
   if (e.keyCode === 13 && message && messageToEdit.id) {
     messageArray.forEach((item) => {
       if (item.id === messageToEdit.id) {
         item.message = message;
-        item.timestamp = timeStamp();
       }
     });
     data.setMessages(messageArray);
@@ -35,7 +32,6 @@ const submitMessage = (e) => {
       .previousElementSibling.querySelector('.selected')
       .querySelector('.text').innerHTML;
     const user = data.findUserByName(userName).id;
-    message = convertEmojis(message);
     const newMsg = new Message (user, message);
     data.addMessage(newMsg);
     grabInput.value = '';
@@ -58,25 +54,6 @@ const Message = (() => {
 const clearMessages = (e) => {
   data.setMessages([]);
   printMessages([]);
-  disableClearMessageBtn(e);
-};
-
-const disableClearMessageBtn = (e) => {
-  if (data.getMessages().length === 0) {
-    clearMessagesBtn.disabled = true;
-    unableClearMessageBtn(e);
-  }
-};
-
-const unableClearMessageBtn = (e) => {
-  grabInput.addEventListener('input', () => {
-    console.log('unable');
-    clearMessagesBtn.disabled = false;
-    submitMessage(e);
-    if (grabInput.value === '') {
-      disableClearMessageBtn(e);
-    };
-  });
 };
 
 const addDeleteEvent = () => {
@@ -116,5 +93,4 @@ module.exports = {
   timeStamp,
   addDeleteEvent,
   addClearMessageEvent,
-  // disableClearMessageBtn,
 };
