@@ -3,10 +3,12 @@ const saveChangesBtn = document.getElementById('save-changes');
 const darkCheckBox = document.getElementById('dark-theme');
 const body = document.getElementsByTagName('body')[0];
 const messagesOutput = document.getElementById('messages-output');
+const largeTextCheckbox = document.getElementById('large-text-checkbox');
 const $backgroundColor = $('#background-color');
 const $textColor = $('#text-color');
 const preBuiltTheme1 = document.getElementById('thumb1');
 const preBuiltTheme2 = document.getElementById('thumb2');
+const backgroundChange = document.getElementById('body-background');
 
 const customThemePicker = (e) => {
   const currentTheme = getComputedStyle(body, null);
@@ -19,14 +21,37 @@ const customThemePicker = (e) => {
   saveChangesBtn.addEventListener('click', setTheme);
   addPreBuiltEvents();
 };
+
+let newBackgroundColorTransparent60;
 const setTheme = (e) => {
-  const newBackgroundColor = $backgroundColor.spectrum('get').toHexString();
+  const newBackgroundColor = $backgroundColor.spectrum('get').toHex();
+  newBackgroundColorTransparent60 = `#${newBackgroundColor}99`;
+  console.log(newBackgroundColorTransparent60);
+  const backgroundValue = linearGradientAndImg();
   const newTextColor = $textColor.spectrum('get').toHexString();
-  body.style.backgroundColor = newBackgroundColor;
+  body.style.background = backgroundValue;
+  body.style.backgroundSize = 'cover';
   body.style.color = newTextColor;
 };
+
+const linearGradientAndImg = () => {
+  let linearGradientString;
+  if (backgroundChange.classList.contains('cheesy')) {
+    linearGradientString = changeImgAndNewBackgrColor('../img/cheesy.jpg');
+    return linearGradientString;
+  } else if (backgroundChange.classList.contains('stormy')) {
+    linearGradientString = changeImgAndNewBackgrColor('../img/stormy.jpg');
+    return linearGradientString;
+  }
+};
+
 const addThemePickerEvent = () => {
   customThemeBtn.addEventListener('click', customThemePicker);
+};
+
+const changeImgAndNewBackgrColor = (img) => {
+  body.style.background = `linear-gradient(${newBackgroundColorTransparent60}, ${newBackgroundColorTransparent60}), url(${img})`;
+  body.style.backgroundSize = 'cover';
 };
 
 const addDarkThemeEvent = () => {
@@ -37,15 +62,16 @@ const darkTheme = () => {
   window.setTimeout(runDarkTheme, 1);
 
   function runDarkTheme () {
-
-    const backgroundChange = document.getElementById('body-background');
     const daNavBar = document.getElementById('da-navbar');
     const labels = document.getElementsByTagName('label');
     const wells = document.getElementsByClassName('well');
-
     const isChecked = document.getElementById('dark-theme').children[0].checked;
+
     console.log('ischecked: ', isChecked);
     if (isChecked === true) {
+      if (backgroundChange.classList.contains('cheesy')) {
+        changeImgAndNewBackgrColor('../img/stormy.jpg');
+      }
       console.log('body: ', backgroundChange);
       backgroundChange.classList.remove('cheesy');
       backgroundChange.classList.add('stormy');
@@ -57,6 +83,9 @@ const darkTheme = () => {
         wells[j].classList.add('dark');
       }
     } else if (isChecked === false) {
+      if (backgroundChange.classList.contains('stormy')) {
+        changeImgAndNewBackgrColor('../img/cheesy.jpg');
+      }
       backgroundChange.classList.remove('stormy');
       backgroundChange.classList.add('cheesy');
       daNavBar.classList.remove('dark');
@@ -69,8 +98,6 @@ const darkTheme = () => {
     }
   }
 };
-
-const largeTextCheckbox = document.getElementById('large-text-checkbox');
 
 const addLargeTextEvent = () => {
   largeTextCheckbox.addEventListener('click', increaseFontSize);

@@ -49,13 +49,40 @@ const goshDarnDark = () => {
   }
 };
 
+const buildAlert = (alertDiv) => {
+  let alertString = '';
+  alertString += `<div class="alert alert-danger fade in" role="alert">`;
+  alertString +=  `<button type="button" class="close" data-dismiss="alert" aria-label="Close">`;
+  alertString +=  `<span aria-hidden="true">&times;</span>`;
+  alertString +=  `</button>`;
+  alertString +=  `<strong>Woops!</strong> Looks like you still need to choose a user`;
+  alertString += `</div>`;
+  alertDiv.innerHTML = alertString;
+};
+
+const showAlert = () => {
+  const alertDiv = document.getElementById('alert-div');
+  if (alertDiv) {
+    buildAlert(alertDiv);
+  } else {
+    const alertBox = document.createElement('div');
+    alertBox.setAttribute('id', 'alert-div');
+    const input = document.getElementById('input');
+    buildAlert(alertBox);
+    input.parentNode.appendChild(alertBox);
+  }
+};
+
 const submitMessage = (e) => {
   const message = grabInput.value;
   const messageArray = data.getMessages();
+  const userName = document.getElementById('selected-user')
+    .previousElementSibling;
   if (e.keyCode === 13 && message && messageToEdit.id) {
     messageArray.forEach((item) => {
       if (item.id === messageToEdit.id) {
         item.message = message;
+        item.timestamp = timeStamp();
       }
     });
     data.setMessages(messageArray);
@@ -64,17 +91,17 @@ const submitMessage = (e) => {
     printMessages(messageArray);
     addEditEvent();
     addDeleteEvent();
-  } else if (e.keyCode === 13 && message && messageToEdit.id !== true) {
-    const userName = document.getElementById('selected-user')
-      .previousElementSibling.querySelector('.selected')
-      .querySelector('.text').innerHTML;
-    const user = data.findUserByName(userName).id;
+  } else if (e.keyCode === 13 && message && (messageToEdit.id !== true) && userName.querySelector('.selected')) {
+    const user = data.findUserByName(userName.querySelector('.selected')
+      .querySelector('.text').innerHTML).id;
     const newMsg = new Message (user, message);
     data.addMessage(newMsg);
     grabInput.value = '';
     printMessages(messageArray);
     addEditEvent();
     addDeleteEvent();
+  } else if (e.keyCode === 13 && message) {
+    showAlert();
   }
   goshDarnDark();
 };
