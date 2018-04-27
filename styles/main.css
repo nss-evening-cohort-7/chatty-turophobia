@@ -15,6 +15,9 @@
   display: inline;
 }
 
+#messages-output {
+  margin-top: 110px;
+}
 .stormy {
   background-image: url('../img/stormy.jpg');
   background-size: cover;
