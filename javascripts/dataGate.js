@@ -27,7 +27,6 @@ function successFunction2 () {
 
 function successFunction3 () {
   const badWords = JSON.parse(this.responseText).bannedNameList.word;
-  console.log('successFunction3', badWords);
   data.setBadWords(badWords);
   msgEvents.addEditEvent();
   msgEvents.addClearMessageEvent();

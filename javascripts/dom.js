@@ -1,6 +1,6 @@
 const findUser = require('./data.js').findUser;
-const getBadWords = require('./data.js').getBadWords;
 const checkEmojis = require('./emoji.js');
+const badWords = require('./badWords.js');
 
 const printToDom = (domString, divId) => {
   document.getElementById(divId).innerHTML = domString;
@@ -25,7 +25,8 @@ const printMessages = (messages) => {
   let domString = '';
   for (let i = 0; i < messages.length; i++) {
     const currentUser = findUser(messages[i].userId);
-    const checkedMessage = checkEmojis(messages[i].message);
+    let checkedMessage = checkEmojis(messages[i].message);
+    checkedMessage = badWords.checkBadWords(checkedMessage);
     domString += `<div id='${messages[i].id}' class='well well-sm clearfix see-through'>`;
     domString +=  `<h5>${currentUser.userName}</h5>`;
     domString +=  `<div class="pull-left">`;
@@ -38,7 +39,6 @@ const printMessages = (messages) => {
     domString += `</div>`;
   }
   printToDom(domString, 'messages-output');
-  console.log(getBadWords());
 };
 
 module.exports = {
