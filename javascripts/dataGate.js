@@ -7,6 +7,7 @@ const themeEvents = require('./themeEvents.js');
 function successFunction1 () {
   const userData = JSON.parse(this.responseText).users;
   data.setUsers(userData);
+  xhrs.xhr3(successFunction3, WTF);
   xhrs.xhr2(successFunction2, WTF);
   prints.printUsers(userData);
   msgEvents.addSubmitEvent();
@@ -22,7 +23,17 @@ function successFunction2 () {
   themeEvents.addDarkThemeEvent();
   themeEvents.addLargeTextEvent();
   msgEvents.addDeleteEvent();
+};
 
+function successFunction3 () {
+  const badWords = JSON.parse(this.responseText).bannedNameList.word;
+  console.log('successFunction3', badWords);
+  data.setBadWords(badWords);
+  msgEvents.addEditEvent();
+  msgEvents.addClearMessageEvent();
+  themeEvents.addDarkThemeEvent();
+  themeEvents.addLargeTextEvent();
+  msgEvents.addDeleteEvent();
 };
 
 function WTF () {
