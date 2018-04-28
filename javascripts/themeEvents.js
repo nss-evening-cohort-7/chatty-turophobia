@@ -6,6 +6,8 @@ const messagesOutput = document.getElementById('messages-output');
 const largeTextCheckbox = document.getElementById('large-text-checkbox');
 const $backgroundColor = $('#background-color');
 const $textColor = $('#text-color');
+const preBuiltTheme1 = document.getElementById('thumb1');
+const preBuiltTheme2 = document.getElementById('thumb2');
 const backgroundChange = document.getElementById('body-background');
 
 const customThemePicker = (e) => {
@@ -17,6 +19,7 @@ const customThemePicker = (e) => {
     color: currentTheme.color,
   });
   saveChangesBtn.addEventListener('click', setTheme);
+  addPreBuiltEvents();
 };
 
 let newBackgroundColorTransparent60;
@@ -38,6 +41,12 @@ const linearGradientAndImg = () => {
     return linearGradientString;
   } else if (backgroundChange.classList.contains('stormy')) {
     linearGradientString = changeImgAndNewBackgrColor('../img/stormy.jpg');
+    return linearGradientString;
+  } else if (backgroundChange.classList.contains('custom1')) {
+    linearGradientString = changeImgAndNewBackgrColor('../img/stormy2.jpg');
+    return linearGradientString;
+  } else if (backgroundChange.classList.contains('custom2')) {
+    linearGradientString = changeImgAndNewBackgrColor('../img/cheesy2.jpg');
     return linearGradientString;
   }
 };
@@ -66,31 +75,34 @@ const darkTheme = () => {
 
     console.log('ischecked: ', isChecked);
     if (isChecked === true) {
-      if (backgroundChange.classList.contains('cheesy')) {
+      if (backgroundChange.classList.contains('cheesy') || backgroundChange.classList.contains('custom1') || backgroundChange.classList.contains('custom2')) {
         changeImgAndNewBackgrColor('../img/stormy.jpg');
       }
-      console.log('body: ', backgroundChange);
-      backgroundChange.classList.remove('cheesy');
+
+      backgroundChange.classList.remove('cheesy', 'custom1', 'custom2');
       backgroundChange.classList.add('stormy');
+      daNavBar.classList.remove('custom1-dark', 'custom2-light');
       daNavBar.classList.add('dark');
       for (let i = 0; i < labels.length; i++) {
+        labels[i].classList.remove('custom1-dark', 'custom2-light');
         labels[i].classList.add('dark');
       }
       for (let j = 0; j < wells.length; j++) {
+        wells[j].classList.remove('custom1-dark', 'custom2-light');
         wells[j].classList.add('dark');
       }
     } else if (isChecked === false) {
-      if (backgroundChange.classList.contains('stormy')) {
+      if (backgroundChange.classList.contains('stormy') || backgroundChange.classList.contains('custom1') || backgroundChange.classList.contains('custom2')) {
         changeImgAndNewBackgrColor('../img/cheesy.jpg');
       }
       backgroundChange.classList.remove('stormy');
       backgroundChange.classList.add('cheesy');
-      daNavBar.classList.remove('dark');
+      daNavBar.classList.remove('dark', 'custom1-dark', 'custom2-light');
       for (let i = 0; i < labels.length; i++) {
-        labels[i].classList.remove('dark');
+        labels[i].classList.remove('dark', 'custom1-dark', 'custom2-light');
       }
       for (let j = 0; j < wells.length; j++) {
-        wells[j].classList.remove('dark');
+        wells[j].classList.remove('dark', 'custom1-dark', 'custom2-light');
       }
     }
   }
@@ -121,6 +133,47 @@ function changeCSSBack (cdn, value) {
   changeLink.setAttribute('href', cdn);
   changeLink.setAttribute('integrity', value);
 }
+
+const addPreBuiltEvents = () => {
+  preBuiltTheme1.addEventListener('click', setTheme1);
+  preBuiltTheme2.addEventListener('click', setTheme1);
+};
+
+const setTheme1 = (e) => {
+  const backgroundChange = document.getElementById('body-background');
+  const daNavBar = document.getElementById('da-navbar');
+  const labels = document.getElementsByTagName('label');
+  const wells = document.getElementsByClassName('well');
+  const theTarget = e.target.id;
+
+  if (theTarget === 'thumb1' || theTarget === 'thumb-img1') {
+    backgroundChange.classList.remove('custom2', 'stormy', 'cheesy');
+    backgroundChange.classList.add('custom1');
+    daNavBar.classList.remove('dark', 'custom2-light');
+    daNavBar.classList.add('custom1-dark');
+    for (let i = 0; i < labels.length; i++) {
+      labels[i].classList.add('custom1-dark');
+      labels[i].classList.remove('dark', 'custom2-light');
+    }
+    for (let j = 0; j < wells.length; j++) {
+      wells[j].classList.remove('dark', 'custom2-light');
+      wells[j].classList.add('custom1-dark');
+    }
+  } else if (theTarget === 'thumb2' || theTarget === 'thumb-img2') {
+    backgroundChange.classList.remove('custom1', 'stormy', 'cheesy');
+    backgroundChange.classList.add('custom2');
+    daNavBar.classList.remove('dark', 'custom1-dark');
+    daNavBar.classList.add('custom2-light');
+    for (let i = 0; i < labels.length; i++) {
+      labels[i].classList.add('custom2-light');
+      labels[i].classList.remove('dark', 'custom1-dark');
+    }
+    for (let j = 0; j < wells.length; j++) {
+      wells[j].classList.remove('dark', 'custom1-dark');
+      wells[j].classList.add('custom2-light');
+    }
+  }
+};
 
 module.exports = {
   addDarkThemeEvent,
