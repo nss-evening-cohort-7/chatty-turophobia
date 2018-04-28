@@ -1,5 +1,4 @@
 const findUser = require('./data.js').findUser;
-const getBadWords = require('./data.js').getBadWords;
 const checkEmojis = require('./emoji.js');
 const badWords = require('./badWords.js');
 
@@ -40,7 +39,6 @@ const printMessages = (messages) => {
     domString += `</div>`;
   }
   printToDom(domString, 'messages-output');
-  console.log(getBadWords());
 };
 
 module.exports = {
