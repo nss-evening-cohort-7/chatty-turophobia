@@ -9,7 +9,12 @@
 * JavaScript
 
 ## Description
+##### A simple chatroom web app
+> User can create new messages with emoji syntax
 
+> User can edit and delete messages
+
+> User can change the theme of the site to whatever they desire
 
 ## Screenshots
 
