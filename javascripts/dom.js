@@ -1,6 +1,7 @@
 const findUser = require('./data.js').findUser;
 const checkEmojis = require('./emoji.js');
 const badWords = require('./badWords.js');
+const AI = require('./AI.js');
 
 const printToDom = (domString, divId) => {
   document.getElementById(divId).innerHTML = domString;
@@ -37,6 +38,7 @@ const printMessages = (messages) => {
     domString +=    `<button class="btn btn-default delete-btn" type="submit">Delete</button>`;
     domString +=  `</div>`;
     domString += `</div>`;
+    AI.grumpy(checkedMessage);
   }
   printToDom(domString, 'messages-output');
 };

@@ -178,4 +178,5 @@ module.exports = {
   timeStamp,
   addDeleteEvent,
   addClearMessageEvent,
+  Message,
 };
