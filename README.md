@@ -24,7 +24,7 @@
 ![Editing](https://github.com/nss-evening-cohort-7/chatty-turophobia/raw/master/screenshots/editting.png)
 
 ### Large Text
-![Large Text]()
+![Large Text](https://github.com/nss-evening-cohort-7/chatty-turophobia/raw/master/screenshots/Largetext.png)
 
 ### Custom Themes
 ![Custom Themes](https://github.com/nss-evening-cohort-7/chatty-turophobia/raw/master/screenshots/custom%20theme%20modal.png)
