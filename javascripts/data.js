@@ -42,12 +42,10 @@ const getUsers  = () => {
 };
 
 const setBadWords = (wordsArray) => {
-  console.log('setter', wordsArray);
   badWordsArray = wordsArray;
 };
 
 const getBadWords = () => {
-  console.log('getter', badWordsArray);
   return badWordsArray;
 };
 

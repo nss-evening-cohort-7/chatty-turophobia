@@ -26,7 +26,7 @@ const printMessages = (messages) => {
   let domString = '';
   for (let i = 0; i < messages.length; i++) {
     const currentUser = findUser(messages[i].userId);
-    const checkedMessage = checkEmojis(messages[i].message);
+    let checkedMessage = checkEmojis(messages[i].message);
     checkedMessage = badWords.checkBadWords(checkedMessage);
     domString += `<div id='${messages[i].id}' class='well well-sm clearfix see-through'>`;
     domString +=  `<h5>${currentUser.userName}</h5>`;
