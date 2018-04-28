@@ -17,7 +17,17 @@
 > User can change the theme of the site to whatever they desire
 
 ## Screenshots
+### Home Page
+![Home Page](https://github.com/nss-evening-cohort-7/chatty-turophobia/raw/master/screenshots/homepage.png)
 
+### Editing
+![Editing](https://github.com/nss-evening-cohort-7/chatty-turophobia/raw/master/screenshots/editting.png)
+
+### Large Text
+![Large Text]()
+
+### Custom Themes
+![Custom Themes](https://github.com/nss-evening-cohort-7/chatty-turophobia/raw/master/screenshots/custom%20theme%20modal.png)
 
 ## How To Run
 ```
