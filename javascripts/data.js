@@ -1,4 +1,5 @@
 let usersArray = [];
+let badWordsArray = [];
 let messagesArray = [
   {
     'id': 'item1',
@@ -40,6 +41,16 @@ const getUsers  = () => {
   return usersArray;
 };
 
+const setBadWords = (wordsArray) => {
+  console.log('setter', wordsArray);
+  badWordsArray = wordsArray;
+};
+
+const getBadWords = () => {
+  console.log('getter', badWordsArray);
+  return badWordsArray;
+};
+
 const setMessages = (messageData) => {
   messagesArray = messageData;
 };
@@ -76,4 +87,6 @@ module.exports = {
   addMessage,
   findUser,
   findUserByName,
+  setBadWords,
+  getBadWords,
 };
