@@ -74,9 +74,9 @@ const showAlert = () => {
   }
 };
 
-const callAI = () => {
-  grumpy();
-};
+// const callAI = () => {
+//   grumpy();
+// };
 
 const submitMessage = (e) => {
   const message = grabInput.value;
@@ -96,7 +96,7 @@ const submitMessage = (e) => {
     printMessages(messageArray);
     addEditEvent();
     addDeleteEvent();
-    callAI();
+    grumpy();
   } else if (e.keyCode === 13 && message && (messageToEdit.id !== true) && userName.querySelector('.selected')) {
     const user = data.findUserByName(userName.querySelector('.selected')
       .querySelector('.text').innerHTML).id;
@@ -106,7 +106,7 @@ const submitMessage = (e) => {
     printMessages(messageArray);
     addEditEvent();
     addDeleteEvent();
-    callAI();
+    grumpy();
   } else if (e.keyCode === 13 && message) {
     showAlert();
   }
