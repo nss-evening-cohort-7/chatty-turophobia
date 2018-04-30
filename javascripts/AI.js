@@ -20,13 +20,13 @@ const grumpy = (messageToCheck) => {
 const mrsGrumpy = () => {
   window.setTimeout(grumpyGrump, 3000);
   const messageArray = data.getMessages();
-  const userToScold = messageArray[0].userId;
+  const userToScold = data.findUser(messageArray[0].userId);
   function grumpyGrump () {
-    const mrsGrumpyMessage = `<p>Eww Gross! ${userToScold} you're happy? Happiness is for the weak!</p>`;
-    const mrsGrumpy = 'Mrs. Grumpy!';
-    const newMessage = new Message (mrsGrumpy, mrsGrumpyMessage);
+    const mrsGrumpyMessage = `<p>Eww Gross! ${userToScold.userName} you're happy? Happiness is for the weak!</p>`;
+    const newMessage = new Message (4, mrsGrumpyMessage);
     data.addMessage(newMessage);
-    print.printMessages(messageArray);
+    const newMessageArray = data.getMessages();
+    print.printMessages(newMessageArray);
   }
 };
 

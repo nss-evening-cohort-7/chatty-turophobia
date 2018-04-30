@@ -1,6 +1,7 @@
-const editButton = document.getElementsByClassName('edit-button');
+const AI = require('./AI.js');
 const data = require('./data');
 const printMessages = require('./dom.js').printMessages;
+const editButton = document.getElementsByClassName('edit-button');
 const grabInput = document.getElementById('input');
 const clearMessagesBtn = document.getElementById('clearMessagesBtn');
 let messageToEdit = [];
@@ -89,6 +90,7 @@ const submitMessage = (e) => {
     messageToEdit = [];
     grabInput.value = '';
     printMessages(messageArray);
+    AI.grumpy(message);
     addEditEvent();
     addDeleteEvent();
   } else if (e.keyCode === 13 && message && (messageToEdit.id !== true) && userName.querySelector('.selected')) {
@@ -100,6 +102,7 @@ const submitMessage = (e) => {
     printMessages(messageArray);
     addEditEvent();
     addDeleteEvent();
+    AI.grumpy(message);
   } else if (e.keyCode === 13 && message) {
     showAlert();
   }
