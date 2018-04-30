@@ -35,4 +35,5 @@ const convertEmojis = (inputString) => {
     return emoji;
   });
 };
+
 module.exports = convertEmojis;

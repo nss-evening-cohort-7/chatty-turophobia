@@ -18,6 +18,7 @@ const printUsers = usersArray => {
     $('.selectpicker').selectpicker();
   });
 };
+
 const printMessages = (messages) => {
   while (messages.length > 20) {
     messages.pop();
