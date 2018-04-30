@@ -1,6 +1,7 @@
-const editButton = document.getElementsByClassName('edit-button');
+// const AI = require('./AI.js');
 const data = require('./data');
 const printMessages = require('./dom.js').printMessages;
+const editButton = document.getElementsByClassName('edit-button');
 const grabInput = document.getElementById('input');
 const clearMessagesBtn = document.getElementById('clearMessagesBtn');
 let messageToEdit = [];
@@ -88,6 +89,7 @@ const submitMessage = (e) => {
     printMessages(messageArray);
     addEditEvent();
     addDeleteEvent();
+    initializeAI();
   } else if (e.keyCode === 13 && message && (messageToEdit.id !== true) && userName.querySelector('.selected')) {
     const user = data.findUserByName(userName.querySelector('.selected')
       .querySelector('.text').innerHTML).id;
@@ -97,6 +99,7 @@ const submitMessage = (e) => {
     printMessages(messageArray);
     addEditEvent();
     addDeleteEvent();
+    initializeAI();
   } else if (e.keyCode === 13 && message) {
     showAlert();
   }
@@ -168,10 +171,69 @@ const editMessage = (e) => {
   grabInput.focus();
 };
 
+// AI Test, Can't get it to work in AI.js. Not sure if it was because I am getting circular dependency or not
+const initializeAI = () => {
+  const messageArray = data.getMessages();
+  const messageForAI = messageArray[0].message.toLowerCase();
+  if (messageForAI.includes('happy')) {
+    mrsGrumpy();
+  } else if (messageForAI.includes('angry')) {
+    mrHappyPants();
+  } else if (messageForAI.includes('big') || messageForAI.includes('huge')) {
+    drSophisticated();
+  }
+};
+
+const mrsGrumpy = () => {
+  window.setTimeout(grumpyGrump, 3000);
+  const messageArray = data.getMessages();
+  const userToScold = data.findUser(messageArray[0].userId);
+  function grumpyGrump () {
+    const mrsGrumpyMessage = `Eww Gross! ${userToScold.userName} you're happy? Happiness is for the weak!`;
+    const newMessage = new Message (4, mrsGrumpyMessage);
+    data.addMessage(newMessage);
+    const newMessageArray = data.getMessages();
+    printMessages(newMessageArray);
+    addEditEvent();
+    addDeleteEvent();
+  }
+};
+
+const mrHappyPants = () => {
+  window.setTimeout(happyPants, 3000);
+  const messageArray = data.getMessages();
+  const userToScold = data.findUser(messageArray[0].userId);
+  function happyPants () {
+    const mrHappyPantsMessage = `@${userToScold.userName} You mad Bro!? Don't be mad get GLAD!!`;
+    const newMessage = new Message (5, mrHappyPantsMessage);
+    data.addMessage(newMessage);
+    const newMessageArray = data.getMessages();
+    printMessages(newMessageArray);
+    addEditEvent();
+    addDeleteEvent();
+  }
+};
+
+const drSophisticated = () => {
+  window.setTimeout(drSoph, 3000);
+  const messageArray = data.getMessages();
+  const userToScold = data.findUser(messageArray[0].userId);
+  function drSoph () {
+    const drSophisticatedMessage = `@${userToScold.userName} THAT'S WHAT CHEESE SAID!!`;
+    const newMessage = new Message (6, drSophisticatedMessage);
+    data.addMessage(newMessage);
+    const newMessageArray = data.getMessages();
+    printMessages(newMessageArray);
+    addEditEvent();
+    addDeleteEvent();
+  }
+};
+
 module.exports = {
   addSubmitEvent,
   addEditEvent,
   timeStamp,
   addDeleteEvent,
   addClearMessageEvent,
+  Message,
 };
