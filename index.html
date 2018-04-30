@@ -22,29 +22,36 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+          <!-- <div class="navbar-form" role="search"></div> -->
+
           <a class='navbar-brand' href="#"></a>
           <div class="navbar-form" role="search"></div>
       </div>
-      <ul class="nav nav-bar col-md-1">
-        <li id='users-output'></li>
-      </ul>
+
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <!-- <div class="row"> -->
         <!-- <div id='users-output'></div> -->
-        <div class="navbar-form" role="search">
-            <div class="form-group">
-              <input type="text" id='input' class="form-control form-input" placeholder="Enter Message">
-            </div>
-            <div class="btn-group" data-toggle="buttons">
-              <label class="btn btn-primary primary" id="large-text-checkbox" value=true>
-                <input type="checkbox" autocomplete="off">Large Text
-              </label>
-              <label id='dark-theme' class="btn btn-primary">
-                <input type="checkbox" autocomplete="off"> Dark Theme
-              </label>
-                <button id='custom-theme' class="btn btn-primary" data-toggle='modal' data-target='#theme-picker'> Custom Theme </button>
-            </div>
-            <button class="btn btn-default form-button" id="clearMessagesBtn">Clear Messages</button>
+
+        <ul class="nav nav-bar col-xs-12 col-sm-2">
+          <li id='users-output'></li>
+        </ul>
+        <div class="navbar-form col-sm-8" role="search">
+          <div class="form-group">
+            <input type="text" id='input' class="form-control form-input" placeholder="Enter Message">
+            <button class="btn btn-default" id="clearMessagesBtn">Clear Messages</button>
+          </div>
+        </div>
+        <div class="btn-group navbar-btn" data-toggle="buttons">
+          <label class="btn btn-primary primary" id="large-text-checkbox" value=true>
+            <input type="checkbox" autocomplete="off">Large Text
+          </label>
+          <label id='dark-theme' class="btn btn-primary">
+            <input type="checkbox" autocomplete="off"> Dark Theme
+          </label>
+            <button id='custom-theme' class="btn btn-primary" data-toggle='modal' data-target='#theme-picker'> Custom Theme </button>
+        </div>
+        </div>
         </div>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
