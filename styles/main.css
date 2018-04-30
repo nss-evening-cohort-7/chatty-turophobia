@@ -1,11 +1,3 @@
-/* body {
-  background-color: blue;
-  font-size: 150% !important;
-} */
-
-/* html {
-  font-size: 150%;
-} */
 
 .form-button, #input {
   width: 25em;
@@ -127,4 +119,16 @@
     color: yellow;
     font-size: 300%;
   }
+}
+
+.navbar-header {
+  padding-right: 10px;
+}
+
+.navbar-brand {
+  background-image: url('../img/logo4.JPG');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 190px;
+  border-radius: 5px;
 }

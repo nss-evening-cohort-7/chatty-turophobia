@@ -25,8 +25,6 @@ const goshDarnDark = () => {
   const wells = document.getElementsByClassName('well');
 
   if (isChecked === true) {
-    console.log('THIS IS HAPPENING');
-    console.log('body: ', backgroundChange);
     backgroundChange.classList.remove('cheesy');
     backgroundChange.classList.add('stormy');
     daNavBar.classList.add('dark');
@@ -37,7 +35,6 @@ const goshDarnDark = () => {
       wells[j].classList.add('dark');
     }
   } else if (isChecked === false) {
-    console.log('FALSE IS HAPPENING');
     backgroundChange.classList.remove('stormy');
     backgroundChange.classList.add('cheesy');
     daNavBar.classList.remove('dark');
@@ -134,7 +131,6 @@ const disableClearMessageBtn = (e) => {
 
 const unableClearMessageBtn = (e) => {
   grabInput.addEventListener('input', () => {
-    console.log('unable');
     clearMessagesBtn.disabled = false;
     submitMessage(e);
     if (grabInput.value === '') {

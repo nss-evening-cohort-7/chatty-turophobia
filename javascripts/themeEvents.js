@@ -26,7 +26,6 @@ let newBackgroundColorTransparent60;
 const setTheme = (e) => {
   const newBackgroundColor = $backgroundColor.spectrum('get').toHex();
   newBackgroundColorTransparent60 = `#${newBackgroundColor}99`;
-  console.log(newBackgroundColorTransparent60);
   const backgroundValue = linearGradientAndImg();
   const newTextColor = $textColor.spectrum('get').toHexString();
   body.style.background = backgroundValue;
@@ -73,7 +72,6 @@ const darkTheme = () => {
     const wells = document.getElementsByClassName('well');
     const isChecked = document.getElementById('dark-theme').children[0].checked;
 
-    console.log('ischecked: ', isChecked);
     if (isChecked === true) {
       if (backgroundChange.classList.contains('cheesy') || backgroundChange.classList.contains('custom1') || backgroundChange.classList.contains('custom2')) {
         changeImgAndNewBackgrColor('../img/stormy.jpg');
