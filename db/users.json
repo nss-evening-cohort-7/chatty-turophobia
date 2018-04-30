@@ -19,6 +19,14 @@
     {
       "id": 4,
       "userName": "Mrs. Grumpy"
+    },
+    {
+      "id": 5,
+      "userName": "Mr. Happy Pants"
+    },
+    {
+      "id": 6,
+      "userName": "Dr. Sophisticated"
     }
   ]
 }

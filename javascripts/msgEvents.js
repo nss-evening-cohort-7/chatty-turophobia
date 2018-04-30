@@ -74,10 +74,6 @@ const showAlert = () => {
   }
 };
 
-// const callAI = () => {
-//   grumpy();
-// };
-
 const submitMessage = (e) => {
   const message = grabInput.value;
   const messageArray = data.getMessages();
@@ -96,7 +92,7 @@ const submitMessage = (e) => {
     printMessages(messageArray);
     addEditEvent();
     addDeleteEvent();
-    grumpy();
+    initializeAI();
   } else if (e.keyCode === 13 && message && (messageToEdit.id !== true) && userName.querySelector('.selected')) {
     const user = data.findUserByName(userName.querySelector('.selected')
       .querySelector('.text').innerHTML).id;
@@ -106,7 +102,7 @@ const submitMessage = (e) => {
     printMessages(messageArray);
     addEditEvent();
     addDeleteEvent();
-    grumpy();
+    initializeAI();
   } else if (e.keyCode === 13 && message) {
     showAlert();
   }
@@ -180,10 +176,15 @@ const editMessage = (e) => {
 };
 
 // AI Test, Can't get it to work in AI.js. Not sure if it was because I am getting circular dependency or not
-const grumpy = () => {
+const initializeAI = () => {
   const messageArray = data.getMessages();
-  if (messageArray[0].message.toLowerCase().includes('happy')) {
+  const messageForAI = messageArray[0].message.toLowerCase();
+  if (messageForAI.includes('happy')) {
     mrsGrumpy();
+  } else if (messageForAI.includes('angry')) {
+    mrHappyPants();
+  } else if (messageForAI.includes('big') || messageForAI.includes('huge')) {
+    drSophisticated();
   }
 };
 
@@ -194,6 +195,36 @@ const mrsGrumpy = () => {
   function grumpyGrump () {
     const mrsGrumpyMessage = `Eww Gross! ${userToScold.userName} you're happy? Happiness is for the weak!`;
     const newMessage = new Message (4, mrsGrumpyMessage);
+    data.addMessage(newMessage);
+    const newMessageArray = data.getMessages();
+    printMessages(newMessageArray);
+    addEditEvent();
+    addDeleteEvent();
+  }
+};
+
+const mrHappyPants = () => {
+  window.setTimeout(happyPants, 3000);
+  const messageArray = data.getMessages();
+  const userToScold = data.findUser(messageArray[0].userId);
+  function happyPants () {
+    const mrHappyPantsMessage = `@${userToScold.userName} You mad Bro!? Don't be mad get GLAD!!`;
+    const newMessage = new Message (5, mrHappyPantsMessage);
+    data.addMessage(newMessage);
+    const newMessageArray = data.getMessages();
+    printMessages(newMessageArray);
+    addEditEvent();
+    addDeleteEvent();
+  }
+};
+
+const drSophisticated = () => {
+  window.setTimeout(drSoph, 3000);
+  const messageArray = data.getMessages();
+  const userToScold = data.findUser(messageArray[0].userId);
+  function drSoph () {
+    const drSophisticatedMessage = `@${userToScold.userName} THAT'S WHAT CHEESE SAID!!`;
+    const newMessage = new Message (6, drSophisticatedMessage);
     data.addMessage(newMessage);
     const newMessageArray = data.getMessages();
     printMessages(newMessageArray);

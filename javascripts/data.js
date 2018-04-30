@@ -75,6 +75,10 @@ const deleteMessage = (message) => {
   messagesArray.splice(messageIndex, 1);
 };
 
+// const getAIWords = () => {
+//   return aiWords;
+// };
+
 module.exports = {
   setUsers,
   getUsers,
