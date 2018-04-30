@@ -1,4 +1,4 @@
-const AI = require('./AI.js');
+// const AI = require('./AI.js');
 const data = require('./data');
 const printMessages = require('./dom.js').printMessages;
 const editButton = document.getElementsByClassName('edit-button');
@@ -74,6 +74,10 @@ const showAlert = () => {
   }
 };
 
+const callAI = () => {
+  grumpy();
+};
+
 const submitMessage = (e) => {
   const message = grabInput.value;
   const messageArray = data.getMessages();
@@ -90,9 +94,9 @@ const submitMessage = (e) => {
     messageToEdit = [];
     grabInput.value = '';
     printMessages(messageArray);
-    AI.grumpy(message);
     addEditEvent();
     addDeleteEvent();
+    callAI();
   } else if (e.keyCode === 13 && message && (messageToEdit.id !== true) && userName.querySelector('.selected')) {
     const user = data.findUserByName(userName.querySelector('.selected')
       .querySelector('.text').innerHTML).id;
@@ -102,7 +106,7 @@ const submitMessage = (e) => {
     printMessages(messageArray);
     addEditEvent();
     addDeleteEvent();
-    AI.grumpy(message);
+    callAI();
   } else if (e.keyCode === 13 && message) {
     showAlert();
   }
@@ -173,6 +177,29 @@ const editMessage = (e) => {
   messageToEdit = data.findMessage(messageId);
   grabInput.value = messageToEdit.message;
   grabInput.focus();
+};
+
+// AI Test, Can't get it to work in AI.js. Not sure if it was because I am getting circular dependency or not
+const grumpy = () => {
+  const messageArray = data.getMessages();
+  if (messageArray[0].message.toLowerCase().includes('happy')) {
+    mrsGrumpy();
+  }
+};
+
+const mrsGrumpy = () => {
+  window.setTimeout(grumpyGrump, 3000);
+  const messageArray = data.getMessages();
+  const userToScold = data.findUser(messageArray[0].userId);
+  function grumpyGrump () {
+    const mrsGrumpyMessage = `Eww Gross! ${userToScold.userName} you're happy? Happiness is for the weak!`;
+    const newMessage = new Message (4, mrsGrumpyMessage);
+    data.addMessage(newMessage);
+    const newMessageArray = data.getMessages();
+    printMessages(newMessageArray);
+    addEditEvent();
+    addDeleteEvent();
+  }
 };
 
 module.exports = {
