@@ -11,6 +11,8 @@ const Message = (() => {
   };
 })();
 
+// Idea is to not use the variable in msgThemes. Just use the updated message array instead, my be able to use add events then.
+
 const grumpy = (messageToCheck) => {
   if (messageToCheck.toLowerCase().includes('happy')) {
     mrsGrumpy();
